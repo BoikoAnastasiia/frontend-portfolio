@@ -15,9 +15,9 @@ export default async function HomePage({
 
   return (
     <PageFrame page="home">
-      {/* Name as poster: fills the viewport, sits on the baseline. */}
-      <section className="flex min-h-[calc(100dvh-11rem)] items-end px-5 pb-6 md:px-8 md:pb-10">
-        <h1 className="poster">
+      {/* Name as a printed mark: bottom-left corner, flush to both edges. */}
+      <section className="flex min-h-[calc(100dvh-9rem)] items-end px-5 pb-1 md:px-8 md:pb-2">
+        <h1 className="poster poster-mark">
           Anastasiia
           <br />
           Boiko

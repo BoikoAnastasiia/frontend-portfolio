@@ -154,7 +154,14 @@ html[data-theme-switching] *::after {
     text-transform: uppercase;
     line-height: 0.86;
     letter-spacing: -0.02em;
-    font-size: clamp(2.75rem, 15.2vw, 15rem);
+    font-size: clamp(2.75rem, 12vw, 11rem);
+  }
+
+  /* The home hero: name set smaller and anchored into the bottom-left corner,
+     flush to both edges the way a printed mark sits on the page. */
+  .poster-mark {
+    font-size: clamp(2.25rem, 7.6vw, 7.5rem);
+    line-height: 0.84;
   }
 
   /* The right-hand column the reference uses for running text. */

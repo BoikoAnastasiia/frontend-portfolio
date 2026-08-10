@@ -1,0 +1,38 @@
+{
+  "site": {
+    "name": "Anastasiia Boiko",
+    "role": "Front-end vývojárka"
+  },
+  "nav": {
+    "home": "Domov",
+    "projects": "Projekty",
+    "about": "O mne",
+    "blog": "Blog",
+    "contact": "Kontakt",
+    "skipToContent": "Preskočiť na obsah",
+    "main": "Hlavné menu"
+  },
+  "theme": {
+    "label": "Monochróm",
+    "toggle": "Prepnúť monochromatickú tému"
+  },
+  "lang": {
+    "label": "Jazyk"
+  },
+  "home": {
+    "headline": "Tvorím rozhrania premyslené do detailu.",
+    "lede": "Front-end vývojárka so šiestimi rokmi praxe s Reactom a desiatimi rokmi grafického dizajnu predtým. Stavy načítania, prechody a spätná väzba nie sú ozdoba na konci. Sú súčasťou produktu."
+  },
+  "about": {
+    "title": "O mne",
+    "body": "Desať rokov som robila grafický dizajn pre tlač, posledných šesť pracujem na front-ende. Dnes vyvíjam platformu na tvorbu športového obsahu: štrnásť mikrofrontendov cez Module Federation, generovanie canvasu pomocou AI, serverové vykresľovanie v produkcii a prístupnosť podľa WCAG 2.1.",
+    "aside": "Roky v dizajne nie sú ozdobou v životopise. Vďaka nim si všimnem, keď je layout o štvrť milimetra vedľa, a rozhranie bez stavov načítania považujem za nedokončené.",
+    "cv": "Stiahnuť životopis (PDF)"
+  },
+  "contact": {
+    "title": "Kontakt",
+    "lede": "Otvorená front-endovým a full-stackovým projektom v Európe.",
+    "copyEmail": "Skopírovať e-mailovú adresu",
+    "copied": "Skopírované"
+  }
+}

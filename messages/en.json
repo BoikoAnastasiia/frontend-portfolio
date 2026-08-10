@@ -1,0 +1,38 @@
+{
+  "site": {
+    "name": "Anastasiia Boiko",
+    "role": "Front-End Developer"
+  },
+  "nav": {
+    "home": "Home",
+    "projects": "Projects",
+    "about": "About",
+    "blog": "Blog",
+    "contact": "Contact",
+    "skipToContent": "Skip to content",
+    "main": "Main"
+  },
+  "theme": {
+    "label": "Monochrome",
+    "toggle": "Toggle monochrome theme"
+  },
+  "lang": {
+    "label": "Language"
+  },
+  "home": {
+    "headline": "I build interfaces that feel considered.",
+    "lede": "Front-end developer with six years in production React, and ten years as a graphic designer before that. Loading states, transitions and micro-feedback are not polish added at the end. They are the product."
+  },
+  "about": {
+    "title": "About",
+    "body": "I spent ten years designing for print and the last six building front-ends. Today I work on a sports content platform: fourteen microfrontends over Module Federation, an AI canvas generation pipeline, production server-side rendering, and WCAG 2.1 accessibility.",
+    "aside": "The design years are not decoration on the CV. They are why I notice when a layout is a quarter of a millimetre out, and why I think an interface without loading states is unfinished.",
+    "cv": "Download CV (PDF)"
+  },
+  "contact": {
+    "title": "Contact",
+    "lede": "Open to front-end and full-stack work across Europe.",
+    "copyEmail": "Copy email address",
+    "copied": "Copied"
+  }
+}

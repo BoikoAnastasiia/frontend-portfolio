@@ -15,7 +15,7 @@ export async function Header({ locale }: { locale: Locale }) {
   const site = await getTranslations('site')
 
   return (
-    <header className="px-5 md:px-8">
+    <header className="px-5 pt-5 md:px-8 md:pt-7">
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:px-3 focus:py-2"
@@ -30,7 +30,7 @@ export async function Header({ locale }: { locale: Locale }) {
       <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 pt-3 pb-4 md:pt-4">
         <Link
           href="/"
-          className="text-sm font-bold tracking-[-0.01em] uppercase no-underline md:text-base"
+          className="text-sm font-bold tracking-[-0.01em] uppercase no-underline hover:underline md:text-base"
         >
           {site('name')}
         </Link>
@@ -41,7 +41,7 @@ export async function Header({ locale }: { locale: Locale }) {
               <li key={item.key}>
                 <Link
                   href={item.href}
-                  className="inline-flex min-h-11 items-center text-sm font-bold tracking-[-0.01em] uppercase md:text-base"
+                  className="inline-flex min-h-11 items-center text-sm font-bold tracking-[-0.01em] uppercase no-underline hover:underline md:text-base"
                 >
                   {t(item.key)}
                 </Link>

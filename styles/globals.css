@@ -149,16 +149,32 @@ html[data-theme-switching] *::after {
   /* Name-as-poster. Sized in vw so it fills the measure at every width, with a
      ceiling so it stops growing on very wide monitors. */
   .poster {
-    font-weight: 900;
+    /* Hairline: the size carries the impact, so the strokes do not have to. */
+    font-weight: 100;
     text-transform: uppercase;
-    line-height: 0.82;
-    letter-spacing: -0.035em;
+    line-height: 0.86;
+    letter-spacing: -0.02em;
     font-size: clamp(2.75rem, 15.2vw, 15rem);
   }
 
   /* The right-hand column the reference uses for running text. */
   .measure {
     max-width: 34ch;
+  }
+
+  /* Chips take the page ink; the brand colour is a hover reward only, and is
+     suppressed entirely in monochrome so the theme stays honest. */
+  .tech-chip {
+    color: var(--figure);
+    transition: color 200ms ease;
+  }
+  .tech-chip:hover,
+  .tech-chip:focus-visible {
+    color: var(--brand, var(--figure));
+  }
+  html[data-theme='mono'] .tech-chip:hover,
+  html[data-theme='mono'] .tech-chip:focus-visible {
+    color: var(--figure);
   }
 }
 

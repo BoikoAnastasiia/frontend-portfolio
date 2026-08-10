@@ -29,7 +29,7 @@ export function LangSwitch({ current }: { current: Locale }) {
               hrefLang={locale}
               aria-current={locale === current ? 'true' : undefined}
               className={`inline-flex min-h-11 min-w-11 items-center justify-center px-1 text-sm tracking-wider ${
-                locale === current ? 'font-bold' : 'no-underline opacity-70'
+                locale === current ? 'font-bold' : 'no-underline opacity-70 hover:underline'
               }`}
             >
               {locale.toUpperCase()}

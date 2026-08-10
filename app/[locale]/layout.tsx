@@ -11,7 +11,8 @@ import '@/styles/globals.css'
 
 const slab = Roboto_Slab({
   subsets: ['latin', 'latin-ext', 'cyrillic'],
-  weight: ['400', '700', '900'],
+  // 100 is the poster hairline; 400 body; 700/900 headings and chips.
+  weight: ['100', '400', '700', '900'],
   display: 'swap',
   variable: '--font-slab',
 })

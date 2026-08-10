@@ -1,0 +1,33 @@
+---
+title: "Pull before push"
+date: "2026-08-10"
+excerpt: "Why an offline-first sync engine has to pull before it pushes, and exactly what breaks when it doesn't."
+ink: "magenta"
+lang: "en"
+draft: true
+---
+
+Slovníček stores its vocabulary in IndexedDB and treats it as the source of
+truth, not as a cache. That one decision creates the hardest problem in the
+whole project: when the same row has been edited in two places, which edit wins?
+
+## The naive version, and why it loses data
+
+Describe the first implementation: push local changes, then pull remote ones.
+Show the interleaving where a stale offline edit silently overwrites a newer
+server row.
+
+## Ordering is the fix, not conflict resolution
+
+Explain why pulling first is what makes last-write-wins safe, rather than the
+comparison itself. The comparison was never the hard part.
+
+## Watermarks per table, not per database
+
+Why a single global "last synced at" is not enough once tables sync at
+different rates, and what a per-table watermark buys.
+
+## What still goes wrong
+
+Be honest here: clock skew between client and server, and what the design does
+about it.

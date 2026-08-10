@@ -26,7 +26,8 @@ export default async function ProjectsPage({
       <section className="px-5 pt-16 md:px-8 md:pt-24">
         <ul className="flex flex-col">
           {PROJECTS.map((project) => (
-            <li key={project.slug} className="border-t py-8 first:border-t-0 md:py-12">
+            <li key={project.slug} data-reveal
+              className="border-t py-8 first:border-t-0 md:py-12">
               <div className="grid gap-4 md:grid-cols-2 md:gap-10">
                 <h2 className="text-[clamp(1.75rem,1rem+3vw,3.5rem)] leading-[1.02] font-black tracking-[-0.025em]">
                   {project.title}

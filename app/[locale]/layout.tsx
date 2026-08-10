@@ -7,6 +7,7 @@ import { routing } from '@/i18n/routing'
 import { ThemeScript } from '@/components/theme-script'
 import { Header } from '@/components/header'
 import { Footer } from '@/components/footer'
+import { RevealFallback } from '@/components/reveal-fallback'
 import '@/styles/globals.css'
 
 const slab = Roboto_Slab({
@@ -48,6 +49,7 @@ export default async function LocaleLayout({
             {children}
           </main>
           <Footer />
+          <RevealFallback />
         </NextIntlClientProvider>
       </body>
     </html>

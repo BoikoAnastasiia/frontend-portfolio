@@ -69,5 +69,11 @@
       "short": "Môj prvý projekt v Pythone, bežiaci na cron od prvého dňa",
       "long": "Agregátor pracovných ponúk z piatich zdrojov cez spoločné rozhranie zdroja, s upozorneniami cez Telegram bota, spúšťaný cez GitHub Actions každé štyri hodiny a pamätajúci si už zobrazené ponuky. Môj prvý projekt v Pythone."
     }
+  },
+  "blog": {
+    "title": "Poznámky.",
+    "lede": "Píšem o tom, čo bolo náročné: poradie synchronizácie, meranie textu skôr, než vznikne, a cesta od tlačového dizajnu k produkčnému kódu.",
+    "outline": "Koncept",
+    "back": "Všetky poznámky"
   }
 }

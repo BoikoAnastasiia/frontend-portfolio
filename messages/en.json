@@ -69,5 +69,11 @@
       "short": "My first Python project, running on a cron since day one",
       "long": "A job aggregator over five sources behind a pluggable source interface, notifying through a Telegram bot, running on a GitHub Actions cron every four hours with persistent dedupe state. My first project in Python, and the reason I now reach for it."
     }
+  },
+  "blog": {
+    "title": "Notes.",
+    "lede": "Writing about the things that were hard: sync ordering, measuring text before it exists, and the road from print design to production code.",
+    "outline": "Outline",
+    "back": "All notes"
   }
 }

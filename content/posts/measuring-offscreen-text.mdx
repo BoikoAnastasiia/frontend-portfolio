@@ -1,0 +1,26 @@
+---
+title: "Measuring text that isn't on screen yet"
+date: "2026-08-05"
+excerpt: "Rendering React offscreen, measuring it with getBoundingClientRect, and handing the numbers to a canvas."
+ink: "key"
+lang: "en"
+draft: true
+---
+
+Generating a design automatically means knowing how big the text will be before
+you have drawn anything. The browser already knows. You just have to ask it.
+
+## Why the canvas can't answer this
+
+Canvas text metrics do not account for wrapping, hyphenation or the exact font
+fallback the page ended up using.
+
+## Rendering offscreen and measuring for real
+
+Describe the offscreen React render, and why `getBoundingClientRect` on real DOM
+nodes gives numbers the canvas can trust.
+
+## The traps
+
+Fonts that have not loaded yet, and why `document.fonts.ready` is not optional.
+Devices where the fallback font measures differently.

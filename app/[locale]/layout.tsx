@@ -1,9 +1,10 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { hasLocale, NextIntlClientProvider } from 'next-intl'
-import { setRequestLocale } from 'next-intl/server'
+import { setRequestLocale, getTranslations } from 'next-intl/server'
 import { Roboto_Slab } from 'next/font/google'
 import { routing } from '@/i18n/routing'
+import { SITE_URL } from '@/lib/site'
 import { ThemeScript } from '@/components/theme-script'
 import { Header } from '@/components/header'
 import { Footer } from '@/components/footer'
@@ -22,8 +23,36 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }))
 }
 
-export const metadata: Metadata = {
-  title: 'Anastasiia Boiko — Front-End Developer',
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'site' })
+  const home = await getTranslations({ locale, namespace: 'home' })
+
+  return {
+    metadataBase: new URL(SITE_URL),
+    title: {
+      default: `${t('name')} — ${t('role')}`,
+      template: `%s — ${t('name')}`,
+    },
+    description: home('lede'),
+    alternates: {
+      canonical: locale === routing.defaultLocale ? '/' : `/${locale}`,
+      languages: Object.fromEntries(
+        routing.locales.map((l) => [l, l === routing.defaultLocale ? '/' : `/${l}`]),
+      ),
+    },
+    openGraph: {
+      type: 'website',
+      locale,
+      title: `${t('name')} — ${t('role')}`,
+      description: home('lede'),
+    },
+    robots: { index: true, follow: true },
+  }
 }
 
 export default async function LocaleLayout({

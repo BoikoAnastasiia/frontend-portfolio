@@ -29,7 +29,9 @@ export function LangSwitch({ current }: { current: Locale }) {
               hrefLang={locale}
               aria-current={locale === current ? 'true' : undefined}
               className={`inline-flex min-h-11 min-w-11 items-center justify-center px-1 text-sm tracking-wider ${
-                locale === current ? 'font-bold' : 'no-underline opacity-70 hover:underline'
+                // No opacity dimming: at 14px it drops white-on-magenta to
+                // 2.86:1. Weight and the underline carry the current state.
+                locale === current ? 'font-bold' : 'no-underline hover:underline'
               }`}
             >
               {locale.toUpperCase()}

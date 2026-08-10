@@ -244,10 +244,12 @@ html[data-theme-switching] *::after {
   /* The `animation-range: entry` test is mandatory — it filters out browsers
      with only partial support that would otherwise claim the feature. */
   @supports ((animation-timeline: view()) and (animation-range: entry)) {
+    /* Transform only, never opacity: a card caught mid-entry would otherwise
+       render its text at reduced contrast, and fast scrolling would flash
+       half-visible copy. Movement alone carries the effect. */
     @keyframes rise {
       from {
-        opacity: 0;
-        transform: translateY(2rem);
+        transform: translateY(2.5rem);
       }
     }
 
@@ -278,16 +280,12 @@ html[data-theme-switching] *::after {
   /* Fallback path. [data-revealed] is only ever set by JavaScript, so if the
      script never runs these rules never match and nothing is hidden. */
   [data-reveal][data-revealed] {
-    transition:
-      opacity 500ms ease,
-      transform 500ms ease;
+    transition: transform 500ms ease;
   }
   [data-reveal][data-revealed='false'] {
-    opacity: 0;
-    transform: translateY(2rem);
+    transform: translateY(2.5rem);
   }
   [data-reveal][data-revealed='true'] {
-    opacity: 1;
     transform: none;
   }
 }

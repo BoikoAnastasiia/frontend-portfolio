@@ -4,6 +4,7 @@ import { LangSwitch } from './lang-switch'
 import type { Locale } from '@/i18n/routing'
 
 const NAV = [
+  { href: '/', key: 'home' },
   { href: '/projects', key: 'projects' },
   { href: '/about', key: 'about' },
   { href: '/blog', key: 'blog' },

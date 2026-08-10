@@ -1,0 +1,129 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   CMYK process inks.
+
+   Magenta is deliberately deepened from true process magenta. #EC008C scores
+   4.10:1 against black and 4.25:1 against white — both fail WCAG AA for body
+   text. Do not "correct" it back; tests/unit/palette.test.ts enforces this.
+   --------------------------------------------------------------------------- */
+:root {
+  --ink-cyan: oklch(0.73 0.15 231);
+  --ink-magenta: oklch(0.57 0.25 355);
+  --ink-yellow: oklch(0.95 0.19 105);
+  --ink-key: oklch(0.22 0 0);
+  --paper: oklch(0.985 0.002 106);
+
+  /* Overridden per post from frontmatter; cyan is the blog index default. */
+  --post-ink: var(--ink-cyan);
+
+  /* Fallbacks so a page without data-page still renders legibly. */
+  --ground: var(--paper);
+  --figure: var(--ink-key);
+  --rule: var(--ink-key);
+}
+
+@theme inline {
+  --color-ink-cyan: var(--ink-cyan);
+  --color-ink-magenta: var(--ink-magenta);
+  --color-ink-yellow: var(--ink-yellow);
+  --color-ink-key: var(--ink-key);
+  --color-paper: var(--paper);
+  --color-ground: var(--ground);
+  --color-figure: var(--figure);
+  --color-rule: var(--rule);
+  --font-sans: var(--font-slab);
+}
+
+/* ---------------------------------------------------------------------------
+   The whole theme system. Two attributes on <html> resolve to three variables;
+   no component anywhere names a colour.
+   --------------------------------------------------------------------------- */
+html[data-page="home"] {
+  --ground: var(--ink-magenta);
+  --figure: #fff;
+  --rule: var(--ink-yellow);
+}
+html[data-page="projects"] {
+  --ground: var(--ink-key);
+  --figure: #fff;
+  --rule: var(--ink-yellow);
+}
+html[data-page="about"] {
+  --ground: var(--ink-yellow);
+  --figure: var(--ink-key);
+  --rule: var(--ink-magenta);
+}
+html[data-page="contact"] {
+  --ground: var(--ink-cyan);
+  --figure: var(--ink-key);
+  --rule: var(--ink-magenta);
+}
+html[data-page="blog"] {
+  --ground: var(--paper);
+  --figure: var(--ink-key);
+  --rule: var(--post-ink);
+}
+
+/* Single override, higher specificity, wins over every page rule above. */
+html[data-theme="mono"] {
+  --ground: var(--paper);
+  --figure: var(--ink-key);
+  --rule: var(--ink-key);
+}
+
+/* ---------------------------------------------------------------------------
+   Base
+   --------------------------------------------------------------------------- */
+html {
+  background: var(--ground);
+  transition: background-color 400ms ease;
+}
+
+body {
+  background: var(--ground);
+  color: var(--figure);
+  transition:
+    background-color 400ms ease,
+    color 400ms ease;
+  /* 17px floor: Roboto Slab's brackets get muddy below it. */
+  font-size: clamp(1.0625rem, 1rem + 0.4vw, 1.25rem);
+  line-height: 1.6;
+  font-family: var(--font-slab), Georgia, serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--rule);
+  text-decoration-thickness: 0.14em;
+  text-underline-offset: 0.18em;
+  transition: text-decoration-color 200ms ease;
+}
+
+a:hover {
+  text-decoration-thickness: 0.28em;
+}
+
+:focus-visible {
+  outline: 3px solid var(--rule);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--rule);
+  color: var(--ground);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

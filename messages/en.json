@@ -20,13 +20,16 @@
     "label": "Language"
   },
   "home": {
-    "headline": "I build interfaces that feel considered.",
-    "lede": "Front-end developer with six years in production React, and ten years as a graphic designer before that. Loading states, transitions and micro-feedback are not polish added at the end. They are the product."
+    "headline": "Front-end engineering with a designer's eye.",
+    "lede": "Six years building production React, and ten years as a graphic designer before that. Loading states, transitions and micro-feedback are not polish added at the end. They are the product.",
+    "learnMore": "Learn more",
+    "featured": "Selected projects.",
+    "allProjects": "All projects"
   },
   "about": {
     "title": "About",
     "body": "I spent ten years designing for print and the last six building front-ends. Today I work on a sports content platform: fourteen microfrontends over Module Federation, an AI canvas generation pipeline, production server-side rendering, and WCAG 2.1 accessibility.",
-    "aside": "The design years are not decoration on the CV. They are why I notice when a layout is a quarter of a millimetre out, and why I think an interface without loading states is unfinished.",
+    "aside": "The design years are not decoration on a CV. They are why I notice when a layout is a quarter of a millimetre out, and why I think an interface without loading states is unfinished.",
     "cv": "Download CV (PDF)"
   },
   "contact": {
@@ -34,5 +37,37 @@
     "lede": "Open to front-end and full-stack work across Europe.",
     "copyEmail": "Copy email address",
     "copied": "Copied"
+  },
+  "projects": {
+    "title": "A catalogue of work.",
+    "live": "Live",
+    "repo": "Source",
+    "stack": "Technologies",
+    "graphicsTitle": "Graphics.",
+    "graphicsLede": "Ten years of print and brand design, and five years of graphics made daily inside the Gipper platform.",
+    "podhod": {
+      "short": "Full-stack strength trainer on Cloudflare Workers and D1",
+      "long": "A bilingual workout builder and tracker, built solo. A 1,324-exercise library, per-exercise progression computed by a pure engine, Google sign-in, and a CI pipeline that migrates the database before every deploy."
+    },
+    "slovnicek": {
+      "short": "Offline-first PWA with a hand-written sync engine",
+      "long": "IndexedDB is the source of truth, not a cache. The hard part is a bidirectional sync engine: last-write-wins with per-table watermarks, and pull deliberately ordered before push so a stale offline edit can never overwrite a newer server row."
+    },
+    "rjecnicek": {
+      "short": "The same engine, retargeted to Croatian",
+      "long": "Slovníček rebuilt for a family member learning Croatian: a B1–B2 word bank extended with an electrician's trade vocabulary. Proof that a one-off app can be turned into a reusable product shape."
+    },
+    "guess-the-band": {
+      "short": "Music quiz with a serverless API and difficulty stats",
+      "long": "Vercel Functions proxy the Deezer API server-side rather than exposing it to the browser. Every round and answer is recorded in Postgres to compute per-track difficulty. Anonymous play always works, and syncs the moment you sign in."
+    },
+    "gipper": {
+      "short": "Fourteen microfrontends, an AI canvas pipeline, production SSR",
+      "long": "The sports content platform I work on daily. A Claude agent interprets a natural-language request, the front-end renders offscreen React templates, measures text slots via getBoundingClientRect, and assembles a Fabric.js canvas."
+    },
+    "job-feed-bot": {
+      "short": "My first Python project, running on a cron since day one",
+      "long": "A job aggregator over five sources behind a pluggable source interface, notifying through a Telegram bot, running on a GitHub Actions cron every four hours with persistent dedupe state. My first project in Python, and the reason I now reach for it."
+    }
   }
 }

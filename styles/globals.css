@@ -138,6 +138,30 @@ html[data-theme-switching] *::after {
   }
 }
 
+@layer components {
+  /* The horizontal rules that structure every page. */
+  .rule {
+    border: 0;
+    border-top: 3px solid var(--rule);
+    margin: 0;
+  }
+
+  /* Name-as-poster. Sized in vw so it fills the measure at every width, with a
+     ceiling so it stops growing on very wide monitors. */
+  .poster {
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 0.82;
+    letter-spacing: -0.035em;
+    font-size: clamp(2.75rem, 15.2vw, 15rem);
+  }
+
+  /* The right-hand column the reference uses for running text. */
+  .measure {
+    max-width: 34ch;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

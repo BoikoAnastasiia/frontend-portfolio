@@ -20,8 +20,11 @@
     "label": "Jazyk"
   },
   "home": {
-    "headline": "Tvorím rozhrania premyslené do detailu.",
-    "lede": "Front-end vývojárka so šiestimi rokmi praxe s Reactom a desiatimi rokmi grafického dizajnu predtým. Stavy načítania, prechody a spätná väzba nie sú ozdoba na konci. Sú súčasťou produktu."
+    "headline": "Front-end s okom dizajnérky.",
+    "lede": "Šesť rokov práce s Reactom v produkcii a desať rokov grafického dizajnu predtým. Stavy načítania, prechody a spätná väzba nie sú ozdoba na konci. Sú súčasťou produktu.",
+    "learnMore": "Viac o mne",
+    "featured": "Vybrané projekty.",
+    "allProjects": "Všetky projekty"
   },
   "about": {
     "title": "O mne",
@@ -34,5 +37,37 @@
     "lede": "Otvorená front-endovým a full-stackovým projektom v Európe.",
     "copyEmail": "Skopírovať e-mailovú adresu",
     "copied": "Skopírované"
+  },
+  "projects": {
+    "title": "Katalóg práce.",
+    "live": "Web",
+    "repo": "Kód",
+    "stack": "Technológie",
+    "graphicsTitle": "Grafika.",
+    "graphicsLede": "Desať rokov tlačového a brand dizajnu a päť rokov grafiky, ktorú denne tvorím v platforme Gipper.",
+    "podhod": {
+      "short": "Full-stack tréningová aplikácia na Cloudflare Workers a D1",
+      "long": "Dvojjazyčný nástroj na tvorbu a sledovanie tréningov, celý vytvorený samostatne. Knižnica 1 324 cvikov, schémy progresie počítané čistým enginom, prihlásenie cez Google a CI, ktoré pred každým nasadením migruje databázu."
+    },
+    "slovnicek": {
+      "short": "Offline-first PWA s vlastným synchronizačným enginom",
+      "long": "IndexedDB je tu zdrojom pravdy, nie cache. Najnáročnejšia časť je obojsmerná synchronizácia: last-write-wins s vlastnou značkou pre každú tabuľku a zámerné poradie „najprv pull, potom push“, aby staršia offline zmena nikdy neprepísala novší záznam na serveri."
+    },
+    "rjecnicek": {
+      "short": "Rovnaký engine, prestavaný na chorvátčinu",
+      "long": "Slovníček prerobený pre člena rodiny, ktorý sa učí chorvátsky: slovná zásoba B1–B2 doplnená o odbornú elektrikársku terminológiu. Dôkaz, že jednorazovú aplikáciu možno zmeniť na opakovateľný produkt."
+    },
+    "guess-the-band": {
+      "short": "Hudobný kvíz so serverless API a štatistikou obtiažnosti",
+      "long": "Vercel Functions volajú Deezer API na serveri, nie z prehliadača. Každé kolo a každá odpoveď sa zapisujú do Postgresu, aby sa dala počítať obtiažnosť jednotlivých skladieb. Anonymná hra funguje vždy a synchronizuje sa hneď po prihlásení."
+    },
+    "gipper": {
+      "short": "Štrnásť mikrofrontendov, AI canvas pipeline, SSR v produkcii",
+      "long": "Platforma na športový obsah, na ktorej pracujem denne. Agent Claude spracuje požiadavku v prirodzenom jazyku, front-end vykreslí React šablóny mimo obrazovky, odmeria textové polia cez getBoundingClientRect a zloží canvas na Fabric.js."
+    },
+    "job-feed-bot": {
+      "short": "Môj prvý projekt v Pythone, bežiaci na cron od prvého dňa",
+      "long": "Agregátor pracovných ponúk z piatich zdrojov cez spoločné rozhranie zdroja, s upozorneniami cez Telegram bota, spúšťaný cez GitHub Actions každé štyri hodiny a pamätajúci si už zobrazené ponuky. Môj prvý projekt v Pythone."
+    }
   }
 }

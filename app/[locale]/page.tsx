@@ -1,5 +1,7 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server'
 import { PageFrame } from '@/components/page-frame'
+import { Link } from '@/i18n/navigation'
+import { FEATURED } from '@/content/projects'
 
 export default async function HomePage({
   params,
@@ -9,14 +11,71 @@ export default async function HomePage({
   const { locale } = await params
   setRequestLocale(locale)
   const t = await getTranslations('home')
+  const p = await getTranslations('projects')
 
   return (
     <PageFrame page="home">
-      <section className="px-5 py-16 md:px-10 md:py-28">
-        <h1 className="max-w-[18ch] text-[clamp(2.5rem,1.5rem+7vw,7rem)] leading-[0.95] font-black tracking-[-0.03em]">
-          {t('headline')}
+      {/* Name as poster: fills the viewport, sits on the baseline. */}
+      <section className="flex min-h-[calc(100dvh-11rem)] items-end px-5 pb-6 md:px-8 md:pb-10">
+        <h1 className="poster">
+          Anastasiia
+          <br />
+          Boiko
         </h1>
-        <p className="mt-10 max-w-[46ch]">{t('lede')}</p>
+      </section>
+
+      {/* Running text sits in the right-hand column. */}
+      <section className="px-5 pt-16 pb-24 md:px-8 md:pt-28 md:pb-40">
+        <div className="md:ml-[50%]">
+          <p className="measure text-[clamp(1.25rem,1rem+1.1vw,2rem)] leading-[1.25] font-bold tracking-[-0.015em]">
+            {t('headline')}
+          </p>
+          <p className="measure mt-8 text-[clamp(1.0625rem,1rem+0.4vw,1.375rem)] leading-[1.4]">
+            {t('lede')}
+          </p>
+          <p className="mt-8">
+            <Link
+              href="/about"
+              className="text-[clamp(1.125rem,1rem+0.6vw,1.5rem)] font-bold"
+            >
+              {t('learnMore')}
+            </Link>
+          </p>
+        </div>
+      </section>
+
+      <hr className="rule mx-5 md:mx-8" />
+
+      <section className="px-5 pt-6 pb-4 md:px-8 md:pt-8">
+        <h2 className="text-[clamp(1.25rem,1rem+1.1vw,2rem)] font-bold tracking-[-0.015em] md:ml-[50%]">
+          {t('featured')}
+        </h2>
+      </section>
+
+      {/* Project table: name left, one-line description right. */}
+      <section className="px-5 pb-20 md:px-8">
+        <ul style={{ background: 'var(--paper)', color: 'var(--ink-key)' }}>
+          {FEATURED.map((project) => (
+            <li key={project.slug} className="border-b last:border-b-0">
+              <Link
+                href="/projects"
+                className="grid gap-1 px-4 py-5 no-underline md:grid-cols-2 md:items-baseline md:px-6"
+              >
+                <span className="text-xl font-bold tracking-[-0.015em]">
+                  {project.title}
+                </span>
+                <span className="text-[1.0625rem] leading-[1.35]">
+                  {p(`${project.slug}.short`)}
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <p className="mt-6 md:ml-[50%]">
+          <Link href="/projects" className="text-lg font-bold">
+            {t('allProjects')}
+          </Link>
+        </p>
       </section>
     </PageFrame>
   )

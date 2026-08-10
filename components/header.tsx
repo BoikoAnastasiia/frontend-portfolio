@@ -4,7 +4,6 @@ import { LangSwitch } from './lang-switch'
 import type { Locale } from '@/i18n/routing'
 
 const NAV = [
-  { href: '/', key: 'home' },
   { href: '/projects', key: 'projects' },
   { href: '/about', key: 'about' },
   { href: '/blog', key: 'blog' },
@@ -16,7 +15,7 @@ export async function Header({ locale }: { locale: Locale }) {
   const site = await getTranslations('site')
 
   return (
-    <header className="px-5 pt-5 md:px-10 md:pt-8">
+    <header className="px-5 md:px-8">
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:px-3 focus:py-2"
@@ -25,30 +24,34 @@ export async function Header({ locale }: { locale: Locale }) {
         {t('skipToContent')}
       </a>
 
-      <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2">
+      {/* The rule that opens every page. */}
+      <hr className="rule" />
+
+      <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 pt-3 pb-4 md:pt-4">
         <Link
           href="/"
-          className="text-lg leading-none font-black tracking-[-0.02em] uppercase no-underline sm:text-xl"
+          className="text-sm font-bold tracking-[-0.01em] uppercase no-underline md:text-base"
         >
           {site('name')}
         </Link>
+
+        <nav aria-label={t('main')} className="flex-1">
+          <ul className="flex flex-wrap items-baseline gap-x-6 md:justify-around">
+            {NAV.map((item) => (
+              <li key={item.key}>
+                <Link
+                  href={item.href}
+                  className="inline-flex min-h-11 items-center text-sm font-bold tracking-[-0.01em] uppercase md:text-base"
+                >
+                  {t(item.key)}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
         <LangSwitch current={locale} />
       </div>
-
-      <nav aria-label={t('main')} className="mt-2 md:mt-4">
-        <ul className="flex flex-wrap gap-x-5 gap-y-0 sm:gap-x-8">
-          {NAV.map((item) => (
-            <li key={item.key}>
-              <Link
-                href={item.href}
-                className="inline-flex min-h-11 items-center text-sm tracking-wide uppercase sm:text-base"
-              >
-                {t(item.key)}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </nav>
     </header>
   )
 }

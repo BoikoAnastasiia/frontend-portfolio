@@ -5,6 +5,8 @@ import { setRequestLocale } from 'next-intl/server'
 import { Roboto_Slab } from 'next/font/google'
 import { routing } from '@/i18n/routing'
 import { ThemeScript } from '@/components/theme-script'
+import { Header } from '@/components/header'
+import { Footer } from '@/components/footer'
 import '@/styles/globals.css'
 
 const slab = Roboto_Slab({
@@ -38,8 +40,14 @@ export default async function LocaleLayout({
       <head>
         <ThemeScript />
       </head>
-      <body>
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+      <body className="flex min-h-dvh flex-col">
+        <NextIntlClientProvider>
+          <Header locale={locale} />
+          <main id="main" className="flex-1">
+            {children}
+          </main>
+          <Footer />
+        </NextIntlClientProvider>
       </body>
     </html>
   )

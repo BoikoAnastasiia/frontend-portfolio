@@ -72,49 +72,70 @@ html[data-theme="mono"] {
   --rule: var(--ink-key);
 }
 
+/*
+ * The colour bleed is designed for page-to-page navigation, not for the theme
+ * toggle: animating yellow to black interpolates through olive-green, and
+ * white to black through grey, which reads as a rendering fault. The toggle
+ * sets this attribute for one frame so the swap is instantaneous.
+ */
+html[data-theme-switching],
+html[data-theme-switching] *,
+html[data-theme-switching] *::before,
+html[data-theme-switching] *::after {
+  transition: none !important;
+}
+
 /* ---------------------------------------------------------------------------
    Base
+
+   These MUST live in @layer base. Unlayered CSS wins over everything inside
+   Tailwind's layers, so an unlayered `a { text-decoration: underline }` would
+   silently defeat every `no-underline` utility on the site.
    --------------------------------------------------------------------------- */
-html {
-  background: var(--ground);
-  transition: background-color 400ms ease;
-}
+@layer base {
+  html {
+    background: var(--ground);
+    transition: background-color 400ms ease;
+  }
 
-body {
-  background: var(--ground);
-  color: var(--figure);
-  transition:
-    background-color 400ms ease,
-    color 400ms ease;
-  /* 17px floor: Roboto Slab's brackets get muddy below it. */
-  font-size: clamp(1.0625rem, 1rem + 0.4vw, 1.25rem);
-  line-height: 1.6;
-  font-family: var(--font-slab), Georgia, serif;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-}
+  body {
+    background: var(--ground);
+    color: var(--figure);
+    transition:
+      background-color 400ms ease,
+      color 400ms ease;
+    /* 17px floor: Roboto Slab's brackets get muddy below it. */
+    font-size: clamp(1.0625rem, 1rem + 0.4vw, 1.25rem);
+    line-height: 1.6;
+    font-family: var(--font-slab), Georgia, serif;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
 
-a {
-  color: inherit;
-  text-decoration: underline;
-  text-decoration-color: var(--rule);
-  text-decoration-thickness: 0.14em;
-  text-underline-offset: 0.18em;
-  transition: text-decoration-color 200ms ease;
-}
+  a {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-color: var(--rule);
+    text-decoration-thickness: 0.14em;
+    text-underline-offset: 0.18em;
+    transition:
+      text-decoration-color 200ms ease,
+      text-decoration-thickness 120ms ease;
+  }
 
-a:hover {
-  text-decoration-thickness: 0.28em;
-}
+  a:hover {
+    text-decoration-thickness: 0.28em;
+  }
 
-:focus-visible {
-  outline: 3px solid var(--rule);
-  outline-offset: 3px;
-}
+  :focus-visible {
+    outline: 3px solid var(--rule);
+    outline-offset: 3px;
+  }
 
-::selection {
-  background: var(--rule);
-  color: var(--ground);
+  ::selection {
+    background: var(--rule);
+    color: var(--ground);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

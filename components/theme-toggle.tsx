@@ -27,7 +27,16 @@ export function ThemeToggle() {
 
   function toggle() {
     const next: Theme = theme === 'color' ? 'mono' : 'color'
-    document.documentElement.dataset.theme = next
+    const root = document.documentElement
+
+    // Suppress the page-transition bleed for this one swap, then release it on
+    // the next frame so navigation still animates.
+    root.dataset.themeSwitching = ''
+    root.dataset.theme = next
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => delete root.dataset.themeSwitching)
+    })
+
     persist(next)
     setTheme(next)
   }

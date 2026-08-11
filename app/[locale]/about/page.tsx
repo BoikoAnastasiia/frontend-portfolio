@@ -22,7 +22,7 @@ export default async function AboutPage({
 
       <section className="px-5 pt-16 pb-24 md:px-8 md:pt-24 md:pb-40">
         <div className="md:ml-[50%]">
-          <p className="measure text-[clamp(1.25rem,1rem+1.1vw,2rem)] leading-[1.25] font-bold tracking-[-0.015em]">
+          <p className="measure text-[clamp(1.25rem,1rem+1.1vw,2rem)] leading-[1.25] font-bold tracking-[-0.015em] text-pretty">
             {t('body')}
           </p>
 

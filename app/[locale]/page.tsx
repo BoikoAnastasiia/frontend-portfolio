@@ -27,7 +27,7 @@ export default async function HomePage({
       {/* Running text sits in the right-hand column. */}
       <section className="px-5 pt-16 pb-24 md:px-8 md:pt-28 md:pb-40">
         <div className="md:ml-[50%]">
-          <p className="measure text-[clamp(1.25rem,1rem+1.1vw,2rem)] leading-[1.25] font-bold tracking-[-0.015em]">
+          <p className="measure text-[clamp(1.25rem,1rem+1.1vw,2rem)] leading-[1.25] font-bold tracking-[-0.015em] text-pretty">
             {t('headline')}
           </p>
           <p className="measure mt-8 text-[clamp(1.0625rem,1rem+0.4vw,1.375rem)] leading-[1.4]">

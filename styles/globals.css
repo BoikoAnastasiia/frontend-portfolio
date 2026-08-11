@@ -195,6 +195,10 @@ html[data-theme-switching] *::after {
     font-size: clamp(1.875rem, 5.4vw, 4.75rem);
     line-height: 0.98;
     letter-spacing: -0.015em;
+    /* balance, not pretty: pretty only rescues the last line from an orphan,
+       while balance evens every line — which is what a two-line display
+       heading needs. Chrome caps it at six lines, well above this. */
+    text-wrap: balance;
   }
 
   /* The right-hand column the reference uses for running text. */

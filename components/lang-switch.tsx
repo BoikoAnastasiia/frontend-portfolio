@@ -28,11 +28,11 @@ export function LangSwitch({ current }: { current: Locale }) {
               lang={locale}
               hrefLang={locale}
               aria-current={locale === current ? 'true' : undefined}
-              className={`inline-flex min-h-11 min-w-11 items-center justify-center px-1 text-sm tracking-wider ${
-                // No opacity dimming: at 14px it drops white-on-magenta to
-                // 2.86:1. Weight and the underline carry the current state.
-                locale === current ? 'font-bold' : 'no-underline hover:underline'
-              }`}
+              // The class list is a constant, and which locale is current is
+              // expressed only by aria-current, with the styling hung off that
+              // in CSS. A className computed from a prop is what React was
+              // reporting a hydration mismatch on here.
+              className="lang-link inline-flex min-h-11 min-w-11 items-center justify-center px-1 text-sm tracking-wider"
             >
               {locale.toUpperCase()}
             </Link>

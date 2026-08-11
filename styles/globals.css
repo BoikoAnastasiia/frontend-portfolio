@@ -201,6 +201,19 @@ html[data-theme-switching] *::after {
     text-wrap: balance;
   }
 
+  /* Language switcher. No opacity dimming on the inactive locales: at 14px it
+     drops white-on-magenta to 2.86:1. Weight and the underline carry the
+     current state instead. */
+  .lang-link:not([aria-current]) {
+    text-decoration: none;
+  }
+  .lang-link:not([aria-current]):hover {
+    text-decoration: underline;
+  }
+  .lang-link[aria-current] {
+    font-weight: 700;
+  }
+
   /* The right-hand column the reference uses for running text. */
   .measure {
     max-width: 34ch;

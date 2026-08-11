@@ -23,7 +23,7 @@
     "headline": "I care about what happens between design and code.",
     "lede": "I’m interested in the part of frontend that sits between “it works” and “it feels right.”",
     "learnMore": "Learn more",
-    "featured": "Selected projects.",
+    "featured": "Projects.",
     "allProjects": "All projects"
   },
   "about": {
@@ -83,7 +83,9 @@
       "long": "A job aggregator over five sources behind a pluggable source interface, notifying through a Telegram bot, running on a GitHub Actions cron every four hours with persistent dedupe state. My first project in Python, and the reason I now reach for it."
     },
     "inUse": "In use.",
-    "openLive": "Load the live version"
+    "openLive": "Load the live version",
+    "screens": "Desktop and phone.",
+    "screensDark": "Dark theme."
   },
   "blog": {
     "title": "Notes.",

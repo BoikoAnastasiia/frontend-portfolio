@@ -24,7 +24,24 @@ export type ProjectEmbed = {
   shape: 'phone' | 'wide'
 }
 
-export type ProjectMedia = ProjectClip | ProjectEmbed
+/** The same screen at both sizes, captured by scripts/capture-screens.mjs. */
+export type ProjectShots = {
+  kind: 'shots'
+  /** Caption key: messages.projects.<id>. */
+  id: 'screens' | 'screensDark'
+  desktop: string
+  mobile: string
+}
+
+export type ProjectMedia = ProjectClip | ProjectEmbed | ProjectShots
+
+/** Every project shot is captured at the same two viewports. */
+const shots = (slug: string, dark = false): ProjectShots => ({
+  kind: 'shots',
+  id: dark ? 'screensDark' : 'screens',
+  desktop: `/media/${slug}/desktop${dark ? '-dark' : ''}.jpg`,
+  mobile: `/media/${slug}/mobile${dark ? '-dark' : ''}.jpg`,
+})
 
 export type Project = {
   /** Also the messages key: messages.projects.<slug> holds the description. */
@@ -48,6 +65,7 @@ export const PROJECTS: Project[] = [
     tech: ['react', 'typescript', 'hono', 'cloudflare-workers', 'drizzle'],
     liveUrl: 'https://podhod-workout.cc/',
     repoUrl: 'https://github.com/BoikoAnastasiia/podhod',
+    media: [shots('podhod'), shots('podhod', true)],
   },
   {
     slug: 'slovnicek',
@@ -55,6 +73,7 @@ export const PROJECTS: Project[] = [
     tech: ['next', 'typescript', 'dexie', 'supabase', 'pwa'],
     liveUrl: 'https://slovnicek-alpha.vercel.app/',
     repoUrl: 'https://github.com/BoikoAnastasiia/slovnicek',
+    media: [shots('slovnicek'), shots('slovnicek', true)],
   },
   {
     slug: 'rjecnicek',
@@ -62,6 +81,7 @@ export const PROJECTS: Project[] = [
     tech: ['next', 'typescript', 'dexie', 'supabase', 'vitest'],
     liveUrl: 'https://rjecnicek.vercel.app/',
     repoUrl: 'https://github.com/BoikoAnastasiia/rjecnicek',
+    media: [shots('rjecnicek'), shots('rjecnicek', true)],
   },
   {
     slug: 'guess-the-band',
@@ -69,6 +89,7 @@ export const PROJECTS: Project[] = [
     tech: ['react', 'vite', 'typescript', 'supabase', 'motion'],
     liveUrl: 'https://guesstheband.fun/',
     repoUrl: 'https://github.com/BoikoAnastasiia/guess-the-band',
+    media: [shots('guess-the-band'), shots('guess-the-band', true)],
   },
   {
     slug: 'gipper',

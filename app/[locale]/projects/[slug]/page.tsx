@@ -6,6 +6,7 @@ import { PageTitle } from '@/components/page-title'
 import { StackChips } from '@/components/stack-chips'
 import { ProjectClipPlayer } from '@/components/project-clip'
 import { ProjectEmbedFrame } from '@/components/project-embed'
+import { ProjectScreens } from '@/components/project-shots'
 import { Link } from '@/i18n/navigation'
 import { PROJECTS } from '@/content/projects'
 import { routing } from '@/i18n/routing'
@@ -82,7 +83,14 @@ export default async function ProjectPage({
           </h2>
 
           {project.media.map((item) =>
-            item.kind === 'clip' ? (
+            item.kind === 'shots' ? (
+              <ProjectScreens
+                key={item.id}
+                shots={item}
+                title={project.title}
+                caption={t(item.id)}
+              />
+            ) : item.kind === 'clip' ? (
               <ProjectClipPlayer
                 key={item.id}
                 clip={item}

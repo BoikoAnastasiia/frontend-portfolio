@@ -23,7 +23,7 @@
     "headline": "Záleží mi na tom, čo sa deje medzi dizajnom a kódom.",
     "lede": "Zaujíma ma tá časť frontendu, ktorá leží medzi „funguje to“ a „je to príjemné používať“.",
     "learnMore": "Viac o mne",
-    "featured": "Vybrané projekty.",
+    "featured": "Projekty.",
     "allProjects": "Všetky projekty"
   },
   "about": {
@@ -83,7 +83,9 @@
       "long": "Agregátor pracovných ponúk z piatich zdrojov cez spoločné rozhranie zdroja, s upozorneniami cez Telegram bota, spúšťaný cez GitHub Actions každé štyri hodiny a pamätajúci si už zobrazené ponuky. Môj prvý projekt v Pythone."
     },
     "inUse": "V akcii.",
-    "openLive": "Načítať živú verziu"
+    "openLive": "Načítať živú verziu",
+    "screens": "Desktop a telefón.",
+    "screensDark": "Tmavá téma."
   },
   "blog": {
     "title": "Poznámky.",

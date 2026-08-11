@@ -1,7 +1,7 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server'
 import { PageFrame } from '@/components/page-frame'
 import { Link } from '@/i18n/navigation'
-import { FEATURED } from '@/content/projects'
+import { PROJECTS } from '@/content/projects'
 
 export default async function HomePage({
   params,
@@ -55,7 +55,7 @@ export default async function HomePage({
       {/* Project table: name left, one-line description right. */}
       <section className="px-5 pb-20 md:px-8">
         <ul style={{ background: 'var(--paper)', color: 'var(--ink-key)' }}>
-          {FEATURED.map((project) => (
+          {PROJECTS.map((project) => (
             <li key={project.slug} className="border-b last:border-b-0">
               <Link
                 href="/projects"

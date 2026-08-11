@@ -56,6 +56,3 @@ export const PROJECTS: Project[] = [
     repoUrl: 'https://github.com/BoikoAnastasiia/jobfeeder',
   },
 ]
-
-/** The three shown on the home page. */
-export const FEATURED = PROJECTS.slice(0, 3)

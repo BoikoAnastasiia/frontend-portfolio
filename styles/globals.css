@@ -132,6 +132,30 @@ html[data-theme-switching] *::after {
     outline-offset: 3px;
   }
 
+  /* Tailwind v4 dropped the opinionated `cursor: pointer` on buttons, so the
+     theme toggle and copy-email control came out with an arrow cursor. Every
+     control that responds to a click says so. */
+  button,
+  summary,
+  label[for],
+  select,
+  [role='button'],
+  [type='button'],
+  [type='submit'],
+  [type='reset'] {
+    cursor: pointer;
+  }
+
+  button:disabled,
+  [aria-disabled='true'] {
+    cursor: not-allowed;
+  }
+
+  /* The sticky header must clear the in-page anchor target. */
+  #main {
+    scroll-margin-block-start: 5rem;
+  }
+
   ::selection {
     background: var(--rule);
     color: var(--ground);

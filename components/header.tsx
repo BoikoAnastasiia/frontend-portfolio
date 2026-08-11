@@ -15,7 +15,7 @@ export async function Header({ locale }: { locale: Locale }) {
   const t = await getTranslations('nav')
 
   return (
-    <header className="px-5 pt-5 md:px-8 md:pt-7">
+    <header className="bg-ground sticky top-0 z-30 px-5 pt-5 md:px-8 md:pt-7">
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:px-3 focus:py-2"

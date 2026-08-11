@@ -188,6 +188,15 @@ html[data-theme-switching] *::after {
     line-height: 0.84;
   }
 
+  /* A full sentence at poster scale. 12vw is sized for one or two words; a
+     sentence needs to come down enough to break into two or three lines
+     instead of thirty. */
+  .poster-statement {
+    font-size: clamp(1.875rem, 5.4vw, 4.75rem);
+    line-height: 0.98;
+    letter-spacing: -0.015em;
+  }
+
   /* The right-hand column the reference uses for running text. */
   .measure {
     max-width: 34ch;

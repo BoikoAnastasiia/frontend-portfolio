@@ -18,16 +18,28 @@ export default async function AboutPage({
 
   return (
     <PageFrame page="about">
-      <PageTitle>{t('title')}</PageTitle>
+      <PageTitle statement>{t('title')}</PageTitle>
 
       <section className="px-5 pt-16 pb-24 md:px-8 md:pt-24 md:pb-40">
         <div className="md:ml-[50%]">
           <p className="measure text-[clamp(1.25rem,1rem+1.1vw,2rem)] leading-[1.25] font-bold tracking-[-0.015em]">
             {t('body')}
           </p>
-          <p className="measure mt-8 text-[clamp(1.0625rem,1rem+0.4vw,1.375rem)] leading-[1.4]">
-            {t('aside')}
+
+          <p className="mt-6 text-sm tracking-[0.06em] uppercase">{t('stats')}</p>
+
+          <p className="measure mt-10 text-[clamp(1.0625rem,1rem+0.4vw,1.375rem)] leading-[1.4]">
+            {t('interest')}
           </p>
+
+          {/* Five parallel clauses. Stacked, they read as the checklist they
+              are; run together as a paragraph they lose the rhythm. */}
+          <ul className="measure mt-8 space-y-2 text-[clamp(1.0625rem,1rem+0.4vw,1.375rem)] leading-[1.35]">
+            {(t.raw('qualities') as string[]).map((line) => (
+              <li key={line}>{line}</li>
+            ))}
+          </ul>
+
           <p className="mt-10">
             <a
               href="/cv.pdf"

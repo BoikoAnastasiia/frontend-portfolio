@@ -20,17 +20,25 @@
     "label": "Jazyk"
   },
   "home": {
-    "headline": "Front-end s okom dizajnérky.",
-    "lede": "Päť rokov práce s Reactom v produkcii a desať rokov grafického dizajnu predtým. Stavy načítania, prechody a spätná väzba nie sú ozdoba na konci. Sú súčasťou produktu.",
+    "headline": "Záleží mi na tom, čo sa deje medzi dizajnom a kódom.",
+    "lede": "Zaujíma ma tá časť frontendu, ktorá leží medzi „funguje to“ a „je to príjemné používať“.",
     "learnMore": "Viac o mne",
     "featured": "Vybrané projekty.",
     "allProjects": "Všetky projekty"
   },
   "about": {
-    "title": "O mne",
-    "body": "Desať rokov som robila grafický dizajn pre tlač, posledných päť pracujem na front-ende. Dnes vyvíjam platformu na tvorbu športového obsahu: štrnásť mikrofrontendov cez Module Federation, generovanie canvasu pomocou AI, serverové vykresľovanie v produkcii a prístupnosť podľa WCAG 2.1.",
-    "aside": "Roky v dizajne nie sú ozdobou v životopise. Vďaka nim si všimnem, keď je layout o štvrť milimetra vedľa, a rozhranie bez stavov načítania považujem za nedokončené.",
-    "cv": "Stiahnuť životopis (PDF)"
+    "title": "Záleží mi na pocite z používania.",
+    "body": "Frontend vývojárka s minulosťou v grafickom dizajne. Tvorím rozhrania, v ktorých vizuálna zrozumiteľnosť, interakcia a kód fungujú spolu.",
+    "cv": "Stiahnuť životopis (PDF)",
+    "stats": "5 rokov frontend · 10 rokov dizajn",
+    "interest": "Zaujíma ma tá časť frontendu, ktorá leží medzi „funguje to“ a „je to príjemné používať“.",
+    "qualities": [
+      "Ako sú informácie podané.",
+      "Ako rozhranie reaguje.",
+      "Či je ďalší krok zrejmý.",
+      "Či príde spätná väzba v správnej chvíli.",
+      "Či komponent dáva zmysel aj vtedy, keď šťastná cesta zmizne."
+    ]
   },
   "contact": {
     "title": "Kontakt",

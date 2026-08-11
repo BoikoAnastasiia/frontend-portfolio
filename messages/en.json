@@ -20,17 +20,25 @@
     "label": "Language"
   },
   "home": {
-    "headline": "Front-end engineering with a designer's eye.",
-    "lede": "Five years building production React, and ten years as a graphic designer before that. Loading states, transitions and micro-feedback are not polish added at the end. They are the product.",
+    "headline": "I care about what happens between design and code.",
+    "lede": "I’m interested in the part of frontend that sits between “it works” and “it feels right.”",
     "learnMore": "Learn more",
     "featured": "Selected projects.",
     "allProjects": "All projects"
   },
   "about": {
-    "title": "About",
-    "body": "I spent ten years designing for print and the last five building front-ends. Today I work on a sports content platform: fourteen microfrontends over Module Federation, an AI canvas generation pipeline, production server-side rendering, and WCAG 2.1 accessibility.",
-    "aside": "The design years are not decoration on a CV. They are why I notice when a layout is a quarter of a millimetre out, and why I think an interface without loading states is unfinished.",
-    "cv": "Download CV (PDF)"
+    "title": "I care about how things feel to use.",
+    "body": "Frontend developer with a background in graphic design, building interfaces where visual clarity, interaction and code work together.",
+    "cv": "Download CV (PDF)",
+    "stats": "5 years frontend · 10 years design",
+    "interest": "I’m interested in the part of frontend that sits between “it works” and “it feels right.”",
+    "qualities": [
+      "How information is presented.",
+      "How an interface responds.",
+      "Whether the next step is obvious.",
+      "Whether feedback comes at the right moment.",
+      "Whether a component still makes sense when the happy path disappears."
+    ]
   },
   "contact": {
     "title": "Contact",

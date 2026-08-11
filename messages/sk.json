@@ -21,14 +21,14 @@
   },
   "home": {
     "headline": "Front-end s okom dizajnérky.",
-    "lede": "Šesť rokov práce s Reactom v produkcii a desať rokov grafického dizajnu predtým. Stavy načítania, prechody a spätná väzba nie sú ozdoba na konci. Sú súčasťou produktu.",
+    "lede": "Päť rokov práce s Reactom v produkcii a desať rokov grafického dizajnu predtým. Stavy načítania, prechody a spätná väzba nie sú ozdoba na konci. Sú súčasťou produktu.",
     "learnMore": "Viac o mne",
     "featured": "Vybrané projekty.",
     "allProjects": "Všetky projekty"
   },
   "about": {
     "title": "O mne",
-    "body": "Desať rokov som robila grafický dizajn pre tlač, posledných šesť pracujem na front-ende. Dnes vyvíjam platformu na tvorbu športového obsahu: štrnásť mikrofrontendov cez Module Federation, generovanie canvasu pomocou AI, serverové vykresľovanie v produkcii a prístupnosť podľa WCAG 2.1.",
+    "body": "Desať rokov som robila grafický dizajn pre tlač, posledných päť pracujem na front-ende. Dnes vyvíjam platformu na tvorbu športového obsahu: štrnásť mikrofrontendov cez Module Federation, generovanie canvasu pomocou AI, serverové vykresľovanie v produkcii a prístupnosť podľa WCAG 2.1.",
     "aside": "Roky v dizajne nie sú ozdobou v životopise. Vďaka nim si všimnem, keď je layout o štvrť milimetra vedľa, a rozhranie bez stavov načítania považujem za nedokončené.",
     "cv": "Stiahnuť životopis (PDF)"
   },

@@ -13,7 +13,6 @@ const NAV = [
 
 export async function Header({ locale }: { locale: Locale }) {
   const t = await getTranslations('nav')
-  const site = await getTranslations('site')
 
   return (
     <header className="px-5 pt-5 md:px-8 md:pt-7">
@@ -29,15 +28,10 @@ export async function Header({ locale }: { locale: Locale }) {
       <hr className="rule" />
 
       <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 pt-3 pb-4 md:pt-4">
-        <Link
-          href="/"
-          className="text-sm font-bold tracking-[-0.01em] uppercase no-underline hover:underline md:text-base"
-        >
-          {site('name')}
-        </Link>
-
+        {/* No separate wordmark: it linked to "/" exactly as the first nav item
+            does, so the row carried the same destination twice. */}
         <nav aria-label={t('main')} className="flex-1">
-          <ul className="flex flex-wrap items-baseline gap-x-6 md:justify-around">
+          <ul className="flex flex-wrap items-baseline gap-x-6 md:justify-between md:pr-6">
             {NAV.map((item) => (
               <li key={item.key}>
                 <Link

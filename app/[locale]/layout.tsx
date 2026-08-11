@@ -66,8 +66,21 @@ export default async function LocaleLayout({
   if (!hasLocale(routing.locales, locale)) notFound()
   setRequestLocale(locale)
 
+  /*
+   * ThemeScript and PageFrame both write attributes onto <html> before React
+   * hydrates — that is the whole point, it is what stops the flash of the
+   * wrong ground colour. React sees the server markup and the live DOM
+   * disagree and logs a hydration mismatch. suppressHydrationWarning is the
+   * supported escape hatch for exactly this case; it applies one level deep,
+   * so only this element's own attributes are exempt.
+   */
   return (
-    <html lang={locale} data-theme="color" className={slab.variable}>
+    <html
+      lang={locale}
+      data-theme="color"
+      className={slab.variable}
+      suppressHydrationWarning
+    >
       <head>
         <ThemeScript />
       </head>

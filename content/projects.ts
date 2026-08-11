@@ -46,7 +46,7 @@ export const PROJECTS: Project[] = [
   {
     slug: 'gipper',
     title: 'Gipper Platform',
-    tech: ['react', 'typescript', 'mobx', 'module-federation', 'fabric', 'mui'],
+    tech: ['react', 'typescript', 'vite', 'mobx', 'module-federation', 'fabric', 'mui'],
     liveUrl: 'https://platform.gogipper.com/',
   },
   {

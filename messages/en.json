@@ -63,7 +63,7 @@
     },
     "gipper": {
       "short": "Fourteen microfrontends, an AI canvas pipeline, production SSR",
-      "long": "The sports content platform I work on daily. A Claude agent interprets a natural-language request, the front-end renders offscreen React templates, measures text slots via getBoundingClientRect, and assembles a Fabric.js canvas."
+      "long": "The sports content platform I work on daily, used by thousands of organisations. A Claude agent interprets a natural-language request, the front-end renders offscreen React templates, measures text slots via getBoundingClientRect, and assembles a Fabric.js canvas."
     },
     "job-feed-bot": {
       "short": "My first Python project, running on a cron since day one",

@@ -94,29 +94,43 @@ export default async function ProjectPage({
             {t('inUse')}
           </h2>
 
-          {project.media.map((item) =>
-            item.kind === 'shots' ? (
+          {project.media
+            .filter((m) => m.kind === 'gallery')
+            .map((item) => (
               <ProjectScreens
                 key={item.id}
-                shots={item}
+                gallery={item}
                 title={project.title}
                 caption={t(item.id)}
+                label={(scene) => t(`scene.${scene}`)}
               />
-            ) : item.kind === 'clip' ? (
-              <ProjectClipPlayer
-                key={item.id}
-                clip={item}
-                caption={t(`${slug}.media.${item.id}`)}
-              />
-            ) : (
+            ))}
+
+          {/* Clips run two to a row on a wide screen, one on a narrow one. */}
+          {project.media.some((m) => m.kind === 'clip') && (
+            <div className="mt-12 grid gap-5 md:grid-cols-2 md:gap-8">
+              {project.media
+                .filter((m) => m.kind === 'clip')
+                .map((item) => (
+                  <ProjectClipPlayer
+                    key={item.id}
+                    clip={item}
+                    caption={t(`${slug}.media.${item.id}`)}
+                  />
+                ))}
+            </div>
+          )}
+
+          {project.media
+            .filter((m) => m.kind === 'embed')
+            .map((item) => (
               <ProjectEmbedFrame
                 key={item.id}
                 embed={item}
                 caption={t(`${slug}.media.${item.id}`)}
                 openLabel={t('openLive')}
               />
-            ),
-          )}
+            ))}
         </section>
       )}
 

@@ -84,9 +84,22 @@
     },
     "inUse": "V akcii.",
     "openLive": "Načítať živú verziu",
-    "screens": "Desktop a telefón.",
-    "screensDark": "Tmavá téma.",
-    "back": "Späť na projekty"
+    "back": "Späť na projekty",
+    "desktop": "Desktop",
+    "desktopDark": "Desktop, tmavá",
+    "phone": "Telefón",
+    "phoneDark": "Telefón, tmavá",
+    "scene": {
+      "home": "Domov",
+      "quiz": "Prebiehajúce kolo",
+      "library": "Knižnica cvikov",
+      "exercise": "Detail cviku",
+      "blog": "Blog",
+      "article": "Článok",
+      "round": "Opakovacie kolo",
+      "words": "Zoznam slov",
+      "profile": "Profil"
+    }
   },
   "blog": {
     "title": "Poznámky.",

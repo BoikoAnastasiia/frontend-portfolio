@@ -24,24 +24,44 @@ export type ProjectEmbed = {
   shape: 'phone' | 'wide'
 }
 
-/** The same screen at both sizes, captured by scripts/capture-screens.mjs. */
-export type ProjectShots = {
-  kind: 'shots'
+/**
+ * Several screens of one app at one size, captured by
+ * scripts/capture-screens.mjs. A landing page alone says nothing about how an
+ * app behaves; the interesting screens are the ones behind it.
+ */
+export type ProjectGallery = {
+  kind: 'gallery'
   /** Caption key: messages.projects.<id>. */
-  id: 'screens' | 'screensDark'
-  desktop: string
-  mobile: string
+  id: 'desktop' | 'desktopDark' | 'phone' | 'phoneDark'
+  view: 'desktop' | 'mobile'
+  /** Each scene id doubles as its label key: messages.projects.scene.<id>. */
+  items: { src: string; scene: string }[]
 }
 
-export type ProjectMedia = ProjectClip | ProjectEmbed | ProjectShots
+export type ProjectMedia = ProjectClip | ProjectEmbed | ProjectGallery
 
-/** Every project shot is captured at the same two viewports. */
-const shots = (slug: string, dark = false): ProjectShots => ({
-  kind: 'shots',
-  id: dark ? 'screensDark' : 'screens',
-  desktop: `/media/${slug}/desktop${dark ? '-dark' : ''}.jpg`,
-  mobile: `/media/${slug}/mobile${dark ? '-dark' : ''}.jpg`,
+const gallery = (
+  slug: string,
+  view: 'desktop' | 'mobile',
+  scenes: string[],
+  dark = false,
+): ProjectGallery => ({
+  kind: 'gallery',
+  id: view === 'mobile' ? (dark ? 'phoneDark' : 'phone') : dark ? 'desktopDark' : 'desktop',
+  view,
+  items: scenes.map((scene) => ({
+    scene,
+    src: `/media/${slug}/${scene}-${view}${dark ? '-dark' : ''}.jpg`,
+  })),
 })
+
+/** Both sizes and both themes of the same set of scenes. */
+const screens = (slug: string, scenes: string[]): ProjectMedia[] => [
+  gallery(slug, 'desktop', scenes),
+  gallery(slug, 'desktop', scenes, true),
+  gallery(slug, 'mobile', scenes),
+  gallery(slug, 'mobile', scenes, true),
+]
 
 export type Project = {
   /** Also the messages key: messages.projects.<slug> holds the description. */
@@ -54,11 +74,19 @@ export type Project = {
 }
 
 /**
- * Order is deliberate: strongest first, job-feed-bot last. It is the only entry
- * with no interface to show and is framed as a first-Python-project learning
- * story rather than a shipped product.
+ * Order is deliberate: Guess the Band leads because its interface carries the
+ * most design work, and job-feed-bot sits last as the only entry with no
+ * interface to show.
  */
 export const PROJECTS: Project[] = [
+  {
+    slug: 'guess-the-band',
+    title: 'Guess the Band',
+    tech: ['react', 'vite', 'typescript', 'supabase', 'motion'],
+    liveUrl: 'https://guesstheband.fun/',
+    repoUrl: 'https://github.com/BoikoAnastasiia/guess-the-band',
+    media: screens('guess-the-band', ['home', 'quiz']),
+  },
   {
     slug: 'podhod',
     /* The app's own wordmark is Latin, not Cyrillic. */
@@ -66,7 +94,7 @@ export const PROJECTS: Project[] = [
     tech: ['react', 'typescript', 'hono', 'cloudflare-workers', 'drizzle'],
     liveUrl: 'https://podhod-workout.cc/',
     repoUrl: 'https://github.com/BoikoAnastasiia/podhod',
-    media: [shots('podhod'), shots('podhod', true)],
+    media: screens('podhod', ['home', 'library', 'exercise', 'blog', 'article']),
   },
   {
     slug: 'slovnicek',
@@ -74,7 +102,7 @@ export const PROJECTS: Project[] = [
     tech: ['next', 'typescript', 'dexie', 'supabase', 'pwa'],
     liveUrl: 'https://slovnicek-alpha.vercel.app/',
     repoUrl: 'https://github.com/BoikoAnastasiia/slovnicek',
-    media: [shots('slovnicek'), shots('slovnicek', true)],
+    media: screens('slovnicek', ['home', 'round', 'words', 'profile']),
   },
   {
     slug: 'rjecnicek',
@@ -82,15 +110,7 @@ export const PROJECTS: Project[] = [
     tech: ['next', 'typescript', 'dexie', 'supabase', 'vitest'],
     liveUrl: 'https://rjecnicek.vercel.app/',
     repoUrl: 'https://github.com/BoikoAnastasiia/rjecnicek',
-    media: [shots('rjecnicek'), shots('rjecnicek', true)],
-  },
-  {
-    slug: 'guess-the-band',
-    title: 'Guess the Band',
-    tech: ['react', 'vite', 'typescript', 'supabase', 'motion'],
-    liveUrl: 'https://guesstheband.fun/',
-    repoUrl: 'https://github.com/BoikoAnastasiia/guess-the-band',
-    media: [shots('guess-the-band'), shots('guess-the-band', true)],
+    media: screens('rjecnicek', ['home', 'round', 'words', 'profile']),
   },
   {
     slug: 'gipper',

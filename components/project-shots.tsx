@@ -1,44 +1,53 @@
 import Image from 'next/image'
-import type { ProjectShots } from '@/content/projects'
+import type { ProjectGallery } from '@/content/projects'
 
 /**
- * Desktop and phone in one frame: the wide screen sets the scale, the phone
- * overlaps its lower-right corner the way a printed case study lays them out.
- * Below the md breakpoint they simply stack — an overlapping phone on a phone
- * is a joke nobody can read.
+ * A row of screens rather than one enormous one. Desktop captures sit two to a
+ * row and phone captures four, which is roughly the same physical width for
+ * both — a phone shown as wide as a laptop reads as a mistake.
  */
 export function ProjectScreens({
-  shots,
+  gallery,
   caption,
   title,
+  label,
 }: {
-  shots: ProjectShots
+  gallery: ProjectGallery
   caption: string
   title: string
+  /** Resolves a scene id to its human label. */
+  label: (scene: string) => string
 }) {
+  const phone = gallery.view === 'mobile'
+
   return (
-    <figure className="mt-10">
-      <div className="md:relative md:pb-16">
-        <Image
-          src={shots.desktop}
-          alt={`${title} — ${caption}`}
-          width={1600}
-          height={1000}
-          sizes="(min-width: 768px) 80vw, 100vw"
-          className="w-full border"
-          style={{ borderColor: 'var(--figure)' }}
-        />
-        <Image
-          src={shots.mobile}
-          alt=""
-          width={780}
-          height={1688}
-          sizes="(min-width: 768px) 20vw, 50vw"
-          className="mt-5 w-1/2 border md:absolute md:right-6 md:bottom-0 md:mt-0 md:w-[19%]"
-          style={{ borderColor: 'var(--figure)' }}
-        />
-      </div>
-      <figcaption className="mt-3 text-[1.0625rem] leading-[1.4]">{caption}</figcaption>
+    <figure className="mt-12">
+      <figcaption className="mb-4 text-[1.0625rem] font-bold">{caption}</figcaption>
+
+      <ul
+        className={`grid gap-5 md:gap-8 ${
+          phone ? 'grid-cols-2 md:grid-cols-4' : 'grid-cols-1 md:grid-cols-2'
+        }`}
+      >
+        {gallery.items.map((item) => (
+          <li key={item.src}>
+            <Image
+              src={item.src}
+              alt={`${title} — ${label(item.scene)}`}
+              width={phone ? 620 : 1100}
+              height={phone ? 1342 : 688}
+              sizes={
+                phone
+                  ? '(min-width: 768px) 22vw, 45vw'
+                  : '(min-width: 768px) 44vw, 92vw'
+              }
+              className="w-full border"
+              style={{ borderColor: 'var(--figure)' }}
+            />
+            <p className="mt-2 text-[0.9375rem] opacity-80">{label(item.scene)}</p>
+          </li>
+        ))}
+      </ul>
     </figure>
   )
 }

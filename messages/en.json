@@ -84,9 +84,22 @@
     },
     "inUse": "In use.",
     "openLive": "Load the live version",
-    "screens": "Desktop and phone.",
-    "screensDark": "Dark theme.",
-    "back": "Back to projects"
+    "back": "Back to projects",
+    "desktop": "Desktop",
+    "desktopDark": "Desktop, dark",
+    "phone": "Phone",
+    "phoneDark": "Phone, dark",
+    "scene": {
+      "home": "Home",
+      "quiz": "A round in play",
+      "library": "Exercise library",
+      "exercise": "Exercise detail",
+      "blog": "Blog",
+      "article": "Article",
+      "round": "Review round",
+      "words": "Word list",
+      "profile": "Profile"
+    }
   },
   "blog": {
     "title": "Notes.",

@@ -60,7 +60,7 @@ export function ProjectClipPlayer({
   }, [load, calm])
 
   return (
-    <figure className="mt-10">
+    <figure className={clip.shape === 'phone' ? 'mx-auto w-full max-w-[320px]' : ''}>
       <video
         ref={ref}
         poster={clip.poster}

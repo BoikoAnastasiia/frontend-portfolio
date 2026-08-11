@@ -1,9 +1,10 @@
+import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { setRequestLocale, getTranslations } from 'next-intl/server'
 import type { Metadata } from 'next'
 import { PageFrame } from '@/components/page-frame'
 import { PageTitle } from '@/components/page-title'
-import { StackChips } from '@/components/stack-chips'
+import { ProjectCard } from '@/components/project-card'
 import { ProjectClipPlayer } from '@/components/project-clip'
 import { ProjectEmbedFrame } from '@/components/project-embed'
 import { ProjectScreens } from '@/components/project-shots'
@@ -58,37 +59,34 @@ export default async function ProjectPage({
         {project.title}
       </PageTitle>
 
-      <section className="px-5 pt-12 pb-24 md:px-8 md:pt-16 md:pb-40">
-        <div className="md:ml-[50%]">
-          <p className="measure text-[clamp(1.25rem,1rem+1.1vw,2rem)] leading-[1.25] font-bold tracking-[-0.015em] text-pretty">
-            {t(`${slug}.short`)}
-          </p>
-
-          <p className="measure mt-6 text-[clamp(1.0625rem,1rem+0.4vw,1.375rem)] leading-[1.4]">
-            {t(`${slug}.long`)}
-          </p>
-
-          <div className="mt-6">
-            <StackChips ids={project.tech} />
-          </div>
-
-          <p className="mt-5 flex flex-wrap gap-x-6">
-            {project.liveUrl && (
-              <a href={project.liveUrl} target="_blank" rel="noreferrer noopener" className="font-bold">
-                {t('live')} ↗
-              </a>
-            )}
-            {project.repoUrl && (
-              <a href={project.repoUrl} target="_blank" rel="noreferrer noopener" className="font-bold">
-                {t('repo')} ↗
-              </a>
-            )}
-          </p>
-        </div>
+      <section className="px-5 pt-10 md:px-8 md:pt-14">
+        <ProjectCard
+          project={project}
+          short={t(`${slug}.short`)}
+          long={t(`${slug}.long`)}
+          scope={project.scope ? t(project.scope) : undefined}
+          liveLabel={t('live')}
+          repoLabel={t('repo')}
+        />
       </section>
 
+      {/* The one screen that opens the page, full width under the block. */}
+      {project.hero && (
+        <section className="px-5 pt-5 md:px-8 md:pt-8">
+          <Image
+            src={project.hero}
+            alt={`${project.title} — ${t('scene.home')}`}
+            width={1100}
+            height={688}
+            priority
+            sizes="(min-width: 768px) 92vw, 100vw"
+            className="w-full"
+          />
+        </section>
+      )}
+
       {project.media && project.media.length > 0 && (
-        <section className="px-5 pb-24 md:px-8 md:pb-40">
+        <section className="px-5 pt-16 pb-24 md:px-8 md:pt-24 md:pb-40">
           <hr className="rule" />
           <h2 className="pt-3 text-[clamp(1.25rem,1rem+1.1vw,2rem)] font-bold tracking-[-0.015em]">
             {t('inUse')}

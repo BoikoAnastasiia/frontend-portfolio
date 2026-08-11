@@ -67,7 +67,10 @@
     },
     "guess-the-band": {
       "short": "Hudobný kvíz so serverless API a štatistikou obtiažnosti",
-      "long": "Vercel Functions volajú Deezer API na serveri, nie z prehliadača. Každé kolo a každá odpoveď sa zapisujú do Postgresu, aby sa dala počítať obtiažnosť jednotlivých skladieb. Anonymná hra funguje vždy a synchronizuje sa hneď po prihlásení."
+      "long": "Vercel Functions volajú Deezer API na serveri, nie z prehliadača. Každé kolo a každá odpoveď sa zapisujú do Postgresu, aby sa dala počítať obtiažnosť jednotlivých skladieb. Anonymná hra funguje vždy a synchronizuje sa hneď po prihlásení.",
+      "media": {
+        "phoneRound": "Kolo zahrané na telefóne, od kolesa žánrov po výber kapely."
+      }
     },
     "gipper": {
       "short": "Štrnásť mikrofrontendov, AI canvas pipeline, SSR v produkcii",
@@ -99,7 +102,8 @@
       "round": "Opakovacie kolo",
       "words": "Zoznam slov",
       "profile": "Profil"
-    }
+    },
+    "scopeFullstack": "Full-stack aplikácia — od dizajnu po API."
   },
   "blog": {
     "title": "Poznámky.",

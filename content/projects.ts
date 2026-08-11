@@ -13,6 +13,8 @@ export type ProjectClip = {
   poster: string
   width: number
   height: number
+  /** A portrait recording is capped so it does not tower over the page. */
+  shape?: 'phone'
 }
 
 /** A live site loaded into the page, but only once the reader asks for it. */
@@ -55,9 +57,13 @@ const gallery = (
   })),
 })
 
-/** Both sizes and both themes of the same set of scenes. */
+/**
+ * Both sizes and both themes of the same set of scenes. The first scene is
+ * lifted out as the page's hero image, so the light desktop gallery skips it
+ * rather than showing the same screen twice.
+ */
 const screens = (slug: string, scenes: string[]): ProjectMedia[] => [
-  gallery(slug, 'desktop', scenes),
+  gallery(slug, 'desktop', scenes.slice(1)),
   gallery(slug, 'desktop', scenes, true),
   gallery(slug, 'mobile', scenes),
   gallery(slug, 'mobile', scenes, true),
@@ -70,6 +76,10 @@ export type Project = {
   tech: TechId[]
   liveUrl?: string
   repoUrl?: string
+  /** Message key for the scope line. Absent where she was one of a team. */
+  scope?: string
+  /** The one screen that opens the page, full width. */
+  hero?: string
   media?: ProjectMedia[]
 }
 
@@ -85,7 +95,21 @@ export const PROJECTS: Project[] = [
     tech: ['react', 'vite', 'typescript', 'supabase', 'motion'],
     liveUrl: 'https://guesstheband.fun/',
     repoUrl: 'https://github.com/BoikoAnastasiia/guess-the-band',
-    media: screens('guess-the-band', ['home', 'quiz']),
+    scope: 'scopeFullstack',
+    hero: '/media/guess-the-band/home-desktop.jpg',
+    media: [
+      ...screens('guess-the-band', ['home', 'quiz']),
+      {
+        kind: 'clip',
+        id: 'phoneRound',
+        webm: '/media/guess-the-band/quiz-phone.webm',
+        mp4: '/media/guess-the-band/quiz-phone.mp4',
+        poster: '/media/guess-the-band/quiz-phone.jpg',
+        width: 620,
+        height: 1342,
+        shape: 'phone',
+      },
+    ],
   },
   {
     slug: 'podhod',
@@ -94,6 +118,8 @@ export const PROJECTS: Project[] = [
     tech: ['react', 'typescript', 'hono', 'cloudflare-workers', 'drizzle'],
     liveUrl: 'https://podhod-workout.cc/',
     repoUrl: 'https://github.com/BoikoAnastasiia/podhod',
+    scope: 'scopeFullstack',
+    hero: '/media/podhod/home-desktop.jpg',
     media: screens('podhod', ['home', 'library', 'exercise', 'blog', 'article']),
   },
   {
@@ -102,6 +128,8 @@ export const PROJECTS: Project[] = [
     tech: ['next', 'typescript', 'dexie', 'supabase', 'pwa'],
     liveUrl: 'https://slovnicek-alpha.vercel.app/',
     repoUrl: 'https://github.com/BoikoAnastasiia/slovnicek',
+    scope: 'scopeFullstack',
+    hero: '/media/slovnicek/home-desktop.jpg',
     media: screens('slovnicek', ['home', 'round', 'words', 'profile']),
   },
   {
@@ -110,6 +138,8 @@ export const PROJECTS: Project[] = [
     tech: ['next', 'typescript', 'dexie', 'supabase', 'vitest'],
     liveUrl: 'https://rjecnicek.vercel.app/',
     repoUrl: 'https://github.com/BoikoAnastasiia/rjecnicek',
+    scope: 'scopeFullstack',
+    hero: '/media/rjecnicek/home-desktop.jpg',
     media: screens('rjecnicek', ['home', 'round', 'words', 'profile']),
   },
   {

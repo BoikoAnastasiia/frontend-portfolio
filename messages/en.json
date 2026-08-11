@@ -67,7 +67,10 @@
     },
     "guess-the-band": {
       "short": "Music quiz with a serverless API and difficulty stats",
-      "long": "Vercel Functions proxy the Deezer API server-side rather than exposing it to the browser. Every round and answer is recorded in Postgres to compute per-track difficulty. Anonymous play always works, and syncs the moment you sign in."
+      "long": "Vercel Functions proxy the Deezer API server-side rather than exposing it to the browser. Every round and answer is recorded in Postgres to compute per-track difficulty. Anonymous play always works, and syncs the moment you sign in.",
+      "media": {
+        "phoneRound": "A round played on a phone, from the genre wheel to picking a band."
+      }
     },
     "gipper": {
       "short": "Fourteen microfrontends, an AI canvas pipeline, production SSR",
@@ -99,7 +102,8 @@
       "round": "Review round",
       "words": "Word list",
       "profile": "Profile"
-    }
+    },
+    "scopeFullstack": "Full-stack app — from the design to the API."
   },
   "blog": {
     "title": "Notes.",

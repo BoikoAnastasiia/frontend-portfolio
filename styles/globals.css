@@ -221,17 +221,19 @@ html[data-theme-switching] *::after {
 
   /* Chips take the page ink; the brand colour is a hover reward only, and is
      suppressed entirely in monochrome so the theme stays honest. */
+  /* inherit, not --figure: the chips also sit inside the paper project card,
+     where the surrounding colour is the key ink rather than the page figure. */
   .tech-chip {
-    color: var(--figure);
+    color: inherit;
     transition: color 200ms ease;
   }
   .tech-chip:hover,
   .tech-chip:focus-visible {
-    color: var(--brand, var(--figure));
+    color: var(--brand, inherit);
   }
   html[data-theme='mono'] .tech-chip:hover,
   html[data-theme='mono'] .tech-chip:focus-visible {
-    color: var(--figure);
+    color: inherit;
   }
 
   /* Long-form body copy inside a rendered MDX post. */

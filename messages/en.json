@@ -85,7 +85,8 @@
     "inUse": "In use.",
     "openLive": "Load the live version",
     "screens": "Desktop and phone.",
-    "screensDark": "Dark theme."
+    "screensDark": "Dark theme.",
+    "back": "Back to projects"
   },
   "blog": {
     "title": "Notes.",

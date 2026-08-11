@@ -61,7 +61,8 @@ export type Project = {
 export const PROJECTS: Project[] = [
   {
     slug: 'podhod',
-    title: 'Подход',
+    /* The app's own wordmark is Latin, not Cyrillic. */
+    title: 'Podhod',
     tech: ['react', 'typescript', 'hono', 'cloudflare-workers', 'drizzle'],
     liveUrl: 'https://podhod-workout.cc/',
     repoUrl: 'https://github.com/BoikoAnastasiia/podhod',

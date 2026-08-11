@@ -44,7 +44,19 @@ export default async function ProjectPage({
 
   return (
     <PageFrame page="projects">
-      <PageTitle>{project.title}</PageTitle>
+      <PageTitle
+        back={
+          <Link
+            href="/projects"
+            aria-label={t('back')}
+            className="inline-flex min-h-11 min-w-11 items-center text-[2rem] leading-none no-underline"
+          >
+            <span aria-hidden="true">←</span>
+          </Link>
+        }
+      >
+        {project.title}
+      </PageTitle>
 
       <section className="px-5 pt-12 pb-24 md:px-8 md:pt-16 md:pb-40">
         <div className="md:ml-[50%]">

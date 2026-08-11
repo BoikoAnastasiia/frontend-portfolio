@@ -58,7 +58,7 @@ export default async function HomePage({
           {PROJECTS.map((project) => (
             <li key={project.slug} className="border-b last:border-b-0">
               <Link
-                href="/projects"
+                href={`/projects/${project.slug}`}
                 className="grid gap-1 px-4 py-5 no-underline md:grid-cols-2 md:items-baseline md:px-6"
               >
                 <span className="text-xl font-bold tracking-[-0.015em]">

@@ -1,5 +1,31 @@
 import type { TechId } from './tech'
 
+/**
+ * A recorded interaction. Both encodings are shipped: Safari only gained VP9
+ * in WebM recently and older iOS still needs the H.264 MP4.
+ */
+export type ProjectClip = {
+  kind: 'clip'
+  /** Also the caption key: messages.projects.<slug>.media.<id>. */
+  id: string
+  webm: string
+  mp4: string
+  poster: string
+  width: number
+  height: number
+}
+
+/** A live site loaded into the page, but only once the reader asks for it. */
+export type ProjectEmbed = {
+  kind: 'embed'
+  id: string
+  url: string
+  /** Phone-shaped or landscape; decides the frame it sits in. */
+  shape: 'phone' | 'wide'
+}
+
+export type ProjectMedia = ProjectClip | ProjectEmbed
+
 export type Project = {
   /** Also the messages key: messages.projects.<slug> holds the description. */
   slug: string
@@ -7,6 +33,7 @@ export type Project = {
   tech: TechId[]
   liveUrl?: string
   repoUrl?: string
+  media?: ProjectMedia[]
 }
 
 /**
@@ -48,6 +75,32 @@ export const PROJECTS: Project[] = [
     title: 'Gipper Platform',
     tech: ['react', 'typescript', 'vite', 'mobx', 'module-federation', 'fabric', 'mui'],
     liveUrl: 'https://platform.gogipper.com/',
+    media: [
+      {
+        kind: 'clip',
+        id: 'imageGeneration',
+        webm: '/media/gipper/ai-image-generation.webm',
+        mp4: '/media/gipper/ai-image-generation.mp4',
+        poster: '/media/gipper/ai-image-generation.jpg',
+        width: 1440,
+        height: 784,
+      },
+      {
+        kind: 'clip',
+        id: 'autoCreate',
+        webm: '/media/gipper/autocreate-canvas.webm',
+        mp4: '/media/gipper/autocreate-canvas.mp4',
+        poster: '/media/gipper/autocreate-canvas.jpg',
+        width: 1440,
+        height: 784,
+      },
+      {
+        kind: 'embed',
+        id: 'storybook',
+        url: 'https://epic-storybook.d36696kjei9opm.amplifyapp.com/?path=/docs/components-modals-tablelayoutmodal--docs',
+        shape: 'wide',
+      },
+    ],
   },
   {
     slug: 'job-feed-bot',

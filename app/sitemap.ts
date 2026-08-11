@@ -1,9 +1,17 @@
 import type { MetadataRoute } from 'next'
 import { routing } from '@/i18n/routing'
 import { getAllPosts } from '@/lib/posts'
+import { PROJECTS } from '@/content/projects'
 import { SITE_URL } from '@/lib/site'
 
-const ROUTES = ['', '/projects', '/about', '/blog', '/contact']
+const ROUTES = [
+  '',
+  '/projects',
+  '/about',
+  '/blog',
+  '/contact',
+  ...PROJECTS.map((p) => `/projects/${p.slug}`),
+]
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const prefix = (locale: string) => (locale === routing.defaultLocale ? '' : `/${locale}`)

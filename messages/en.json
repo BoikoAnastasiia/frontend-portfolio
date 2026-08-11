@@ -71,12 +71,19 @@
     },
     "gipper": {
       "short": "Fourteen microfrontends, an AI canvas pipeline, production SSR",
-      "long": "The sports content platform I work on daily, used by thousands of organisations. A Claude agent interprets a natural-language request, the front-end renders offscreen React templates, measures text slots via getBoundingClientRect, and assembles a Fabric.js canvas."
+      "long": "The sports content platform I work on daily, used by thousands of organisations. A Claude agent interprets a natural-language request, the front-end renders offscreen React templates, measures text slots via getBoundingClientRect, and assembles a Fabric.js canvas.",
+      "media": {
+        "imageGeneration": "A typed prompt moves the input to the bottom of the screen, the reply streams in a character at a time, and choosing a template collapses the page into two panes — the conversation left, the design right.",
+        "autoCreate": "AutoCreate builds a weekly schedule graphic from the calendar. The stars fire as each line of text lands on the canvas.",
+        "storybook": "The component library I contributed to, running live."
+      }
     },
     "job-feed-bot": {
       "short": "My first Python project, running on a cron since day one",
       "long": "A job aggregator over five sources behind a pluggable source interface, notifying through a Telegram bot, running on a GitHub Actions cron every four hours with persistent dedupe state. My first project in Python, and the reason I now reach for it."
-    }
+    },
+    "inUse": "In use.",
+    "openLive": "Load the live version"
   },
   "blog": {
     "title": "Notes.",

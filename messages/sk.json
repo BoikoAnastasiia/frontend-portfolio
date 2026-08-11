@@ -71,12 +71,19 @@
     },
     "gipper": {
       "short": "Štrnásť mikrofrontendov, AI canvas pipeline, SSR v produkcii",
-      "long": "Platforma na športový obsah, na ktorej pracujem denne a používajú ju tisíce organizácií. Agent Claude spracuje požiadavku v prirodzenom jazyku, front-end vykreslí React šablóny mimo obrazovky, odmeria textové polia cez getBoundingClientRect a zloží canvas na Fabric.js."
+      "long": "Platforma na športový obsah, na ktorej pracujem denne a používajú ju tisíce organizácií. Agent Claude spracuje požiadavku v prirodzenom jazyku, front-end vykreslí React šablóny mimo obrazovky, odmeria textové polia cez getBoundingClientRect a zloží canvas na Fabric.js.",
+      "media": {
+        "imageGeneration": "Napísaná požiadavka posunie vstupné pole na spodok obrazovky, odpoveď sa vypisuje znak po znaku a výber šablóny zloží stránku do dvoch panelov — konverzácia vľavo, dizajn vpravo.",
+        "autoCreate": "AutoCreate zostaví grafiku týždenného rozvrhu z kalendára. Hviezdy sa rozžiaria vždy, keď na plátno dosadne ďalší riadok textu.",
+        "storybook": "Knižnica komponentov, na ktorej tvorbe som sa podieľala, naživo."
+      }
     },
     "job-feed-bot": {
       "short": "Môj prvý projekt v Pythone, bežiaci na cron od prvého dňa",
       "long": "Agregátor pracovných ponúk z piatich zdrojov cez spoločné rozhranie zdroja, s upozorneniami cez Telegram bota, spúšťaný cez GitHub Actions každé štyri hodiny a pamätajúci si už zobrazené ponuky. Môj prvý projekt v Pythone."
-    }
+    },
+    "inUse": "V akcii.",
+    "openLive": "Načítať živú verziu"
   },
   "blog": {
     "title": "Poznámky.",

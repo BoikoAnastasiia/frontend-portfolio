@@ -51,3 +51,32 @@ test('language switcher preserves the current path', async ({ page }) => {
     .getByRole('link', { name: 'SK' }).click()
   await expect(page).toHaveURL(/\/sk\/projects$/)
 })
+
+test('a project detail page carries its clips without fetching them upfront', async ({
+  page,
+}) => {
+  const media: string[] = []
+  page.on('request', (r) => {
+    const u = r.url()
+    if (u.includes('/media/')) media.push(u)
+  })
+
+  await page.goto('/projects/gipper')
+  await expect(page.locator('html')).toHaveAttribute('data-page', 'projects')
+
+  const clips = page.locator('video')
+  await expect(clips).toHaveCount(2)
+  // preload="none" plus no <source> until observed: the poster is the only
+  // media request the page is allowed to make on arrival.
+  await expect(clips.first()).toHaveAttribute('preload', 'none')
+  expect(media.filter((u) => /\.(webm|mp4)$/.test(u))).toHaveLength(0)
+
+  // The embed stays a button until asked.
+  await expect(page.locator('iframe')).toHaveCount(0)
+})
+
+test('every project on the index links to its own page', async ({ page }) => {
+  await page.goto('/projects')
+  const links = page.locator('h2 a[href*="/projects/"]')
+  await expect(links).toHaveCount(6)
+})

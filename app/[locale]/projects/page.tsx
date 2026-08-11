@@ -1,4 +1,5 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server'
+import { Link } from '@/i18n/navigation'
 import { PageFrame } from '@/components/page-frame'
 import { PageTitle } from '@/components/page-title'
 import { StackChips } from '@/components/stack-chips'
@@ -30,7 +31,9 @@ export default async function ProjectsPage({
               className="border-t py-8 first:border-t-0 md:py-12">
               <div className="grid gap-4 md:grid-cols-2 md:gap-10">
                 <h2 className="text-[clamp(1.75rem,1rem+3vw,3.5rem)] leading-[1.02] font-black tracking-[-0.025em]">
-                  {project.title}
+                  <Link href={`/projects/${project.slug}`} className="no-underline hover:underline">
+                    {project.title}
+                  </Link>
                 </h2>
 
                 <div>

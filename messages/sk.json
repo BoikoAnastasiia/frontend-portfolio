@@ -1,7 +1,7 @@
 {
   "site": {
     "name": "Anastasiia Boiko",
-    "role": "Front-end vývojárka"
+    "role": "Frontendová vývojárka"
   },
   "nav": {
     "home": "Domov",
@@ -28,21 +28,21 @@
   },
   "about": {
     "title": "Záleží mi na pocite z používania.",
-    "body": "Frontend vývojárka s minulosťou v grafickom dizajne. Tvorím rozhrania, v ktorých vizuálna zrozumiteľnosť, interakcia a kód fungujú spolu.",
+    "body": "Frontendová vývojárka so skúsenosťami z grafického dizajnu. Tvorím rozhrania, v ktorých vizuálna prehľadnosť, interakcia a kód fungujú spolu.",
     "cv": "Stiahnuť životopis (PDF)",
-    "stats": "5 rokov frontend · 10 rokov dizajn",
+    "stats": "5 rokov vo frontende · 10 rokov v dizajne",
     "interest": "Časť, ktorá ma zaujíma, sa začína až vtedy, keď funkcia už funguje.",
     "qualities": [
       "Ako sú informácie podané.",
       "Ako rozhranie reaguje.",
       "Či je ďalší krok zrejmý.",
-      "Či príde spätná väzba v správnej chvíli.",
-      "Či komponent dáva zmysel aj vtedy, keď šťastná cesta zmizne."
+      "Či spätná väzba príde v správnej chvíli.",
+      "Či komponent dáva zmysel aj vtedy, keď ideálny scenár zmizne."
     ]
   },
   "contact": {
     "title": "Kontakt",
-    "lede": "Otvorená front-endovým a full-stackovým projektom v Európe.",
+    "lede": "Otvorená front-endovým a full-stackovým projektom v celej Európe.",
     "copyEmail": "Skopírovať e-mailovú adresu",
     "copied": "Skopírované"
   },
@@ -52,46 +52,46 @@
     "repo": "Kód",
     "stack": "Technológie",
     "graphicsTitle": "Grafika.",
-    "graphicsLede": "Desať rokov tlačového a brand dizajnu a päť rokov grafiky, ktorú denne tvorím v platforme Gipper.",
+    "graphicsLede": "Desať rokov tlačového dizajnu a dizajnu značiek, päť rokov grafiky, ktorú denne tvorím v platforme Gipper.",
     "podhod": {
-      "short": "Full-stack tréningová aplikácia na Cloudflare Workers a D1",
-      "long": "Dvojjazyčný nástroj na tvorbu a sledovanie tréningov, celý vytvorený samostatne. Knižnica 1 324 cvikov, schémy progresie počítané čistým enginom, prihlásenie cez Google a CI, ktoré pred každým nasadením migruje databázu."
+      "short": "Full-stack aplikácia na silový tréning, postavená na Cloudflare Workers a D1",
+      "long": "Dvojjazyčný nástroj na tvorbu a sledovanie tréningov, celý vytvorený samostatne. Knižnica 1 324 cvikov, progresia pre každý cvik, ktorú počíta čistý engine, prihlásenie cez Google a CI pipeline, ktorý pred každým nasadením migruje databázu."
     },
     "slovnicek": {
       "short": "Offline-first PWA s vlastným synchronizačným enginom",
-      "long": "IndexedDB je tu zdrojom pravdy, nie cache. Najnáročnejšia časť je obojsmerná synchronizácia: last-write-wins s vlastnou značkou pre každú tabuľku a zámerné poradie „najprv pull, potom push“, aby staršia offline zmena nikdy neprepísala novší záznam na serveri."
+      "long": "IndexedDB je tu zdrojom pravdy, nie cache. Najnáročnejšia časť je obojsmerná synchronizácia: last-write-wins s vlastným watermarkom pre každú tabuľku a zámerné poradie „najprv pull, potom push“, aby staršia offline zmena nikdy neprepísala novší záznam na serveri."
     },
     "rjecnicek": {
       "short": "Rovnaký engine, prestavaný na chorvátčinu",
-      "long": "Slovníček prerobený pre člena rodiny, ktorý sa učí chorvátsky: slovná zásoba B1–B2 doplnená o odbornú elektrikársku terminológiu. Dôkaz, že jednorazovú aplikáciu možno zmeniť na opakovateľný produkt."
+      "long": "Slovníček prerobený pre člena rodiny, ktorý sa učí chorvátsky: slovná zásoba B1–B2 doplnená o odbornú elektrikársku terminológiu. Dôkaz, že jednorazovú aplikáciu možno zmeniť na opakovane použiteľný produkt."
     },
     "guess-the-band": {
-      "short": "Hudobný kvíz so serverless API a štatistikou obtiažnosti",
-      "long": "Vercel Functions volajú Deezer API na serveri, nie z prehliadača. Každé kolo a každá odpoveď sa zapisujú do Postgresu, aby sa dala počítať obtiažnosť jednotlivých skladieb. Anonymná hra funguje vždy a synchronizuje sa hneď po prihlásení.",
+      "short": "Hudobný kvíz so serverless API a štatistikou náročnosti",
+      "long": "Vercel Functions volajú Deezer API na strane servera, namiesto toho, aby ho vystavili prehliadaču. Každé kolo a každá odpoveď sa zapisujú do Postgresu, aby sa dala počítať náročnosť jednotlivých skladieb. Anonymná hra funguje vždy a synchronizuje sa hneď po prihlásení.",
       "media": {
         "phoneRound": "Kolo zahrané na telefóne, od kolesa žánrov po výber kapely."
       }
     },
     "gipper": {
-      "short": "Štrnásť mikrofrontendov, AI canvas pipeline, SSR v produkcii",
+      "short": "Štrnásť mikrofrontendov, AI pipeline na generovanie grafiky, SSR v produkcii",
       "long": "Platforma na športový obsah, na ktorej pracujem denne a používajú ju tisíce organizácií. Agent Claude spracuje požiadavku v prirodzenom jazyku, front-end vykreslí React šablóny mimo obrazovky, odmeria textové polia cez getBoundingClientRect a zloží canvas na Fabric.js.",
       "media": {
         "imageGeneration": "Napísaná požiadavka posunie vstupné pole na spodok obrazovky, odpoveď sa vypisuje znak po znaku a výber šablóny zloží stránku do dvoch panelov — konverzácia vľavo, dizajn vpravo.",
-        "autoCreate": "AutoCreate zostaví grafiku týždenného rozvrhu z kalendára. Hviezdy sa rozžiaria vždy, keď na plátno dosadne ďalší riadok textu.",
-        "storybook": "Knižnica komponentov, na ktorej tvorbe som sa podieľala, naživo."
+        "autoCreate": "AutoCreate zostaví grafiku týždenného rozvrhu z kalendára. Hviezdy sa rozžiaria vždy, keď na canvas dosadne ďalší riadok textu.",
+        "storybook": "Živá verzia knižnice komponentov, ktorú som spolutvorila."
       }
     },
     "job-feed-bot": {
-      "short": "Môj prvý projekt v Pythone, bežiaci na cron od prvého dňa",
-      "long": "Agregátor pracovných ponúk z piatich zdrojov cez spoločné rozhranie zdroja, s upozorneniami cez Telegram bota, spúšťaný cez GitHub Actions každé štyri hodiny a pamätajúci si už zobrazené ponuky. Môj prvý projekt v Pythone."
+      "short": "Môj prvý projekt v Pythone, bežiaci na crone od prvého dňa",
+      "long": "Agregátor pracovných ponúk z piatich zdrojov za zásuvným rozhraním zdroja, s upozorneniami cez Telegram bota. Beží na GitHub Actions každé štyri hodiny a pamätá si už zobrazené ponuky. Môj prvý projekt v Pythone — a dôvod, prečo po ňom teraz siaham."
     },
     "inUse": "V akcii.",
-    "openLive": "Načítať živú verziu",
+    "openLive": "Načítať ostrú verziu",
     "back": "Späť na projekty",
     "desktop": "Desktop",
-    "desktopDark": "Desktop, tmavá",
+    "desktopDark": "Desktop, tmavá téma",
     "phone": "Telefón",
-    "phoneDark": "Telefón, tmavá",
+    "phoneDark": "Telefón, tmavá téma",
     "scene": {
       "home": "Domov",
       "quiz": "Prebiehajúce kolo",

@@ -1,0 +1,89 @@
+---
+title: 'Streaming, and the loader I drew twice by accident'
+date: '2026-08-14'
+excerpt: 'My first AI feature: reading an HTTP stream by hand, inventing the waiting states, and a Safari bug that drew every shape twice.'
+ink: 'cyan'
+lang: 'en'
+---
+
+The brief was a text box. You type *make me a gameday graphic for Friday*, and a
+design comes back. Everything between those two moments was mine to invent.
+
+## The response arrives in pieces that mean nothing
+
+The agent endpoint streams. I had used `fetch` for years and never once touched
+`response.body`, so this was the first thing I got wrong.
+
+I assumed each chunk from the reader would be a message. It isn't. A chunk is
+however many bytes happened to arrive, and it will cheerfully cut a JSON object
+in half. My first version parsed maybe eight lines in ten and silently dropped
+the rest.
+
+The fix is to treat the stream as a buffer you are allowed to read only up to
+the last newline:
+
+```js
+buffer += decoder.decode(value, { stream: true })
+const lastNl = buffer.lastIndexOf('\n')
+if (lastNl === -1) continue
+processLines(buffer.slice(0, lastNl + 1))
+buffer = buffer.slice(lastNl + 1)
+```
+
+Two details that cost me an afternoon each. `decode` needs `{ stream: true }`,
+or a multi-byte character split across chunks comes out as garbage — you only
+notice when someone types an emoji. And whatever is left in the buffer when the
+reader finishes still has to be parsed; the last object often has no trailing
+newline.
+
+## Nobody told me what waiting should look like
+
+A generation takes several seconds and passes through stages the user cannot
+see: the agent thinking, templates being searched, an image being rendered. A
+spinner would have been honest about none of it.
+
+So the waiting states became their own piece of design work. This is the one I
+am most pleased with — five marks that draw themselves, one after another:
+
+<GipperAiLoader />
+
+Each glyph is a single `<path>`, drawn on by animating `stroke-dashoffset` from
+the path's own length down to zero. They share one 12.5-second timeline and are
+offset with negative `animation-delay`, so the sequence loops with no
+JavaScript running at all.
+
+It looked right in Chrome. In Safari every shape drew **twice** — once, then
+again over itself, slightly out of step.
+
+The cause is `pathLength`. It lets you declare a path to be, say, 100 units
+long so you can write round numbers in your dash values, and Safari does not
+honour it. So the dash was far shorter than the line it ran along — and a dash
+shorter than its line simply repeats. I wasn't seeing a double animation. I was
+seeing one dash pattern tiled twice.
+
+The fix is to stop declaring the length and measure it:
+
+```js
+ref.current?.querySelectorAll('path').forEach((path) => {
+  path.style.setProperty('--len', path.getTotalLength())
+})
+```
+
+The loader above is running that measurement right now.
+
+## The part I still enjoy watching
+
+When you pick a template, the page does not navigate. The sidebar collapses to
+zero width, the conversation slides left, and the template preview you clicked
+flies out of the results and lands as the canvas.
+
+It is a FLIP animation, and the interesting part is measuring where "landed"
+will be before it exists. I collapse the layout with transitions switched off,
+force a synchronous reflow, read the destination rectangle, then put everything
+back — all within one frame, so nothing is ever painted mid-measurement. Then a
+copy of the image is positioned at the destination and given the inverse
+transform that puts it back over the thumbnail you clicked, and animated to
+identity.
+
+The browser does the whole thing on the compositor. The user sees one object
+moving. There are two.

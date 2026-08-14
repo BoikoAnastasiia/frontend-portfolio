@@ -4,6 +4,7 @@ import { MDXRemote } from 'next-mdx-remote/rsc'
 import rehypePrettyCode from 'rehype-pretty-code'
 import { PageFrame } from '@/components/page-frame'
 import { ScrollProgress } from '@/components/scroll-progress'
+import { GipperAiLoader } from '@/components/gipper-ai-loader'
 import { Link } from '@/i18n/navigation'
 import { getAllPosts, getPost, inkVar } from '@/lib/posts'
 import { routing } from '@/i18n/routing'
@@ -47,9 +48,15 @@ export default async function PostPage({
           <div className="prose mt-12 md:ml-[50%]">
             <MDXRemote
               source={content}
+              /* Components a post may use by name in its MDX. */
+              components={{ GipperAiLoader }}
               options={{
                 mdxOptions: {
-                  rehypePlugins: [[rehypePrettyCode, { theme: 'github-light' }]],
+                  /* github-light renders some tokens at #E36209, which is 3.48:1 on
+                     white and fails AA. The high-contrast variant is built for this. */
+                  rehypePlugins: [
+                    [rehypePrettyCode, { theme: 'github-light-high-contrast' }],
+                  ],
                 },
               }}
             />

@@ -397,3 +397,94 @@ html[data-theme-switching] *::after {
     scroll-behavior: auto !important;
   }
 }
+
+/* ---------------------------------------------------------------------------
+   The Gipper AI loader, shown inside the post that describes it.
+   --------------------------------------------------------------------------- */
+@layer components {
+  .ai-loader {
+    --cycle: 12.5s;
+    position: relative;
+    width: 72px;
+    height: 72px;
+    margin: 2.5rem 0;
+    color: oklch(0.62 0.16 145);
+  }
+
+  .ai-loader svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    animation: ai-loader-fade var(--cycle) infinite;
+  }
+
+  .ai-loader path {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    /* --len is set from getTotalLength() on mount; the fallback only has to
+       survive the first frame before the effect runs. */
+    stroke-dasharray: var(--len, 999);
+    stroke-dashoffset: var(--len, 999);
+    animation: ai-loader-draw var(--cycle) infinite;
+  }
+
+  .ai-loader svg:nth-child(2),
+  .ai-loader svg:nth-child(2) path {
+    animation-delay: calc(var(--cycle) / -5 * 4);
+  }
+  .ai-loader svg:nth-child(3),
+  .ai-loader svg:nth-child(3) path {
+    animation-delay: calc(var(--cycle) / -5 * 3);
+  }
+  .ai-loader svg:nth-child(4),
+  .ai-loader svg:nth-child(4) path {
+    animation-delay: calc(var(--cycle) / -5 * 2);
+  }
+  .ai-loader svg:nth-child(5),
+  .ai-loader svg:nth-child(5) path {
+    animation-delay: calc(var(--cycle) / -5);
+  }
+
+  @keyframes ai-loader-draw {
+    0% {
+      stroke-dashoffset: var(--len, 999);
+    }
+    10%,
+    16% {
+      stroke-dashoffset: 0;
+    }
+    20%,
+    100% {
+      stroke-dashoffset: var(--len, 999);
+    }
+  }
+
+  @keyframes ai-loader-fade {
+    0%,
+    20% {
+      opacity: 1;
+    }
+    21%,
+    100% {
+      opacity: 0;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ai-loader svg,
+  .ai-loader path {
+    animation: none;
+  }
+  .ai-loader svg:first-child {
+    opacity: 1;
+  }
+  .ai-loader path {
+    stroke-dashoffset: 0;
+  }
+}

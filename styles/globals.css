@@ -236,9 +236,11 @@ html[data-theme-switching] *::after {
     color: inherit;
   }
 
-  /* Long-form body copy inside a rendered MDX post. */
+  /* Long-form body copy inside a rendered MDX post. 34ch is the measure for a
+     poster paragraph; running prose and code want closer to 70, or a line like
+     `response.body` wraps mid-token. */
   .prose {
-    max-width: 34ch;
+    max-width: 68ch;
   }
   .prose h2 {
     margin-block: 2.5rem 0.75rem;

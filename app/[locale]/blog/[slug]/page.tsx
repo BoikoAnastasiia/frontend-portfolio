@@ -34,7 +34,13 @@ export default async function PostPage({
       <div style={{ ['--post-ink' as string]: inkVar(post.ink) }}>
         <ScrollProgress />
 
-        <article lang={post.lang} className="px-5 pt-24 pb-24 md:px-8 md:pt-40 md:pb-40">
+        {/* A reading column, not the site's poster grid: pushing 3,000 characters
+            into the right half leaves the left one empty for the whole article.
+            Symmetric margins read as a measure; one dead column reads as a bug. */}
+        <article
+          lang={post.lang}
+          className="mx-auto max-w-[58rem] px-5 pt-24 pb-24 md:px-8 md:pt-40 md:pb-40"
+        >
           <hr className="rule" />
           <h1 className="poster pt-2 text-[clamp(2rem,7vw,5.5rem)] text-balance normal-case">
             {post.title}
@@ -45,7 +51,7 @@ export default async function PostPage({
             {post.draft && <span>{t('outline')}</span>}
           </p>
 
-          <div className="prose mt-12 md:ml-[50%]">
+          <div className="prose mt-12">
             <MDXRemote
               source={content}
               /* Components a post may use by name in its MDX. */
@@ -62,7 +68,7 @@ export default async function PostPage({
             />
           </div>
 
-          <p className="mt-16 md:ml-[50%]">
+          <p className="mt-16">
             <Link href="/blog" className="font-bold">
               ← {t('back')}
             </Link>

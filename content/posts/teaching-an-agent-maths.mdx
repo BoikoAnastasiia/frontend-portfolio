@@ -1,0 +1,90 @@
+---
+title: 'Teaching an agent maths, and why I stopped asking it to do any'
+date: '2026-08-15'
+excerpt: 'Building agents with Mastra turned out not to be coding. It is closer to tutoring a bright, inattentive teenager — and evals are the homework nobody warns you about.'
+ink: 'magenta'
+lang: 'en'
+---
+
+I did a course on agents and skills and came away thinking I understood the
+shape of it. Then I built one for production, and the actual work turned out to
+be somewhere else entirely.
+
+It is not really programming. You write a rule; the model follows it in four
+cases out of five and improvises the fifth. You tighten the wording; a different
+rule that was fine yesterday goes soft. It is much closer to teaching a clever
+but inattentive teenager: they *can* do it, they simply stop paying attention
+halfway through the question. So you stop explaining and start removing the
+opportunity to be inattentive.
+
+## Ask the model for less
+
+Our image agent takes a sentence like *score update from last night* and turns
+it into a design. Dates are everywhere in that, and dates are exactly where a
+language model is least trustworthy — it will confidently tell you which weekday
+a date falls on, and it will be wrong often enough to matter.
+
+So the agent does not do date arithmetic. It has two tools, `date-today` and
+`calculate-dates`, and a helper module that is ordinary, boring, tested
+TypeScript. Every genuinely hard case lives there, in code:
+
+```js
+// "Monday 05/04" — the year the user never said
+if (thisYearDate?.getUTCDay() === weekday) return thisYear
+if (nextYearDate?.getUTCDay() === weekday) return thisYear + 1
+// the weekday matches neither: discard it, choose by proximity
+```
+
+That is the whole philosophy of the thing. **If it can be computed, compute it.**
+Every decision you move out of the prompt and into a function is a decision that
+stops being probabilistic.
+
+## The interesting part is deciding what a person meant
+
+A user types a date that cannot exist, or one that has already gone past, and
+something has to decide what they intended. That is not a coding problem, it is
+almost a philosophical one, and it is the part I enjoyed most.
+
+It comes down to grace windows. A bare `04/12` that passed two weeks ago is
+almost certainly *this* year — someone posting a result. The same date eight
+months past is next April. So the helper carries a 150-day past-grace window for
+a plain month/day. But when the user also wrote a weekday, the weekday becomes
+the evidence: it picks the year outright, and only if it matches no candidate
+year does the code fall back to proximity — on a deliberately tighter 90-day
+window, because a wrong weekday is weaker evidence than no weekday at all.
+
+There is a third case I like even more. The agent sometimes attaches a year the
+user never gave, and the weekday it also produced contradicts it. Rather than
+trusting either, the code searches forward a few years for the year where that
+weekday and that date actually agree. The model's own inconsistency becomes the
+thing that catches its mistake.
+
+None of this is difficult code. Deciding what the rules should be took far
+longer than writing them.
+
+## Evals are the actual job
+
+This is what the course did not prepare me for. You cannot unit-test an agent:
+run the same prompt twice and you get two different sentences, both correct.
+
+So we built scorers. Each one is a dataset of prompts paired with ground truth,
+and a function that scores the output between 0 and 1. The event-coverage scorer
+checks that a schedule request forwards *every* event to the image tool —
+nothing dropped, nothing invented — by matching produced events against expected
+ones field by field, one-to-one, so a duplicate cannot paper over a miss.
+
+Two details made them actually useful:
+
+**Score the structure exactly, the prose approximately.** Sport, level, opponent
+and location are compared verbatim. Only the free-text description is judged
+semantically, by a second small agent. Mixing those two kinds of comparison
+gives you a number nobody trusts.
+
+**Test what the model should refuse to do.** Half of one dataset is prompts
+where the user gave no time at all, aimed at a template that has a time slot.
+The ground truth is `null`. The score drops if the agent invents a plausible
+`7:00PM` to fill the gap — which it very much wants to.
+
+The date helpers, meanwhile, have 82 ordinary unit tests. They are deterministic
+because I made them deterministic. That contrast is the whole lesson: the more
+work you move out of the model, the more of your system you can actually test.

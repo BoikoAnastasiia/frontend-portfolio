@@ -35,7 +35,7 @@ export default async function PostPage({
 
         <article lang={post.lang} className="px-5 pt-24 pb-24 md:px-8 md:pt-40 md:pb-40">
           <hr className="rule" />
-          <h1 className="poster pt-2 text-[clamp(2rem,7vw,5.5rem)] normal-case">
+          <h1 className="poster pt-2 text-[clamp(2rem,7vw,5.5rem)] text-balance normal-case">
             {post.title}
           </h1>
 

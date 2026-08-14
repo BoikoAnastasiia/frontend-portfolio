@@ -36,12 +36,12 @@ export default async function BlogPage({
                 className="grid gap-3 py-8 no-underline md:grid-cols-2 md:gap-10 md:py-10"
                 style={{ ['--post-ink' as string]: inkVar(post.ink) }}
               >
-                <h2 className="text-[clamp(1.5rem,1rem+2vw,2.5rem)] leading-[1.05] font-bold tracking-[-0.02em] underline decoration-[var(--post-ink)] decoration-[0.1em] underline-offset-[0.16em]">
+                <h2 className="text-[clamp(1.5rem,1rem+2vw,2.5rem)] leading-[1.05] font-bold tracking-[-0.02em] text-balance underline decoration-[var(--post-ink)] decoration-[0.1em] underline-offset-[0.16em]">
                   {post.title}
                 </h2>
 
                 <div>
-                  <p className="text-[clamp(1.0625rem,1rem+0.4vw,1.25rem)] leading-[1.4]">
+                  <p className="text-[clamp(1.0625rem,1rem+0.4vw,1.25rem)] leading-[1.4] text-pretty">
                     {post.excerpt}
                   </p>
                   <p className="mt-3 flex flex-wrap items-center gap-3 text-sm tracking-wide uppercase">

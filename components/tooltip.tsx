@@ -19,9 +19,13 @@ type TriggerProps = {
 export function Tooltip({
   label,
   children,
+  /** 'end' pins the bubble to the trigger's right edge, for triggers that sit
+      hard against the side of the page and would otherwise clip. */
+  align = 'center',
 }: {
   label: string
   children: ReactElement<TriggerProps>
+  align?: 'center' | 'end'
 }) {
   const id = useId()
   const [open, setOpen] = useState(false)
@@ -44,7 +48,9 @@ export function Tooltip({
         <span
           role="tooltip"
           id={id}
-          className="pointer-events-none absolute bottom-full left-1/2 z-20 mb-1 -translate-x-1/2 border px-2 py-1 text-xs tracking-wide whitespace-nowrap uppercase"
+          className={`pointer-events-none absolute bottom-full z-20 mb-1 border px-2 py-1 text-xs tracking-wide whitespace-nowrap uppercase ${
+            align === 'end' ? 'right-0' : 'left-1/2 -translate-x-1/2'
+          }`}
           style={{
             background: 'var(--ground)',
             color: 'var(--figure)',

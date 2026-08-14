@@ -13,8 +13,10 @@
     "main": "Hlavné menu"
   },
   "theme": {
-    "label": "Monochróm",
-    "toggle": "Prepnúť monochromatickú tému"
+    "mono": "Monochróm",
+    "colour": "CMYK",
+    "toMono": "Prepnúť na monochromatickú tému",
+    "toColour": "Prepnúť na tému CMYK"
   },
   "lang": {
     "label": "Jazyk"

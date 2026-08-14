@@ -13,8 +13,10 @@
     "main": "Main"
   },
   "theme": {
-    "label": "Monochrome",
-    "toggle": "Toggle monochrome theme"
+    "mono": "Monochrome",
+    "colour": "CMYK",
+    "toMono": "Switch to the monochrome theme",
+    "toColour": "Switch to the CMYK theme"
   },
   "lang": {
     "label": "Language"

@@ -1,7 +1,18 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server'
+import { type Locale } from '@/i18n/routing'
+import { alternates } from '@/lib/alternates'
 import { PageFrame } from '@/components/page-frame'
 import { Link } from '@/i18n/navigation'
 import { ProjectList } from '@/components/project-list'
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+  return { alternates: alternates(locale as Locale, '') }
+}
 
 export default async function HomePage({
   params,

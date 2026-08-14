@@ -7,7 +7,23 @@ import { ScrollProgress } from '@/components/scroll-progress'
 import { GipperAiLoader } from '@/components/gipper-ai-loader'
 import { Link } from '@/i18n/navigation'
 import { getAllPosts, getPost, inkVar } from '@/lib/posts'
-import { routing } from '@/i18n/routing'
+import { routing, type Locale } from '@/i18n/routing'
+import { alternates } from '@/lib/alternates'
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string; slug: string }>
+}) {
+  const { locale, slug } = await params
+  const post = getAllPosts().find((p) => p.slug === slug)
+  if (!post) return {}
+  return {
+    title: post.title,
+    description: post.excerpt,
+    alternates: alternates(locale as Locale, `/blog/${slug}`),
+  }
+}
 
 export function generateStaticParams() {
   return routing.locales.flatMap((locale) =>

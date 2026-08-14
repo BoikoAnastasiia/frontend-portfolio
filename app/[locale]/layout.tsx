@@ -39,12 +39,9 @@ export async function generateMetadata({
       template: `%s — ${t('name')}`,
     },
     description: home('lede'),
-    alternates: {
-      canonical: locale === routing.defaultLocale ? '/' : `/${locale}`,
-      languages: Object.fromEntries(
-        routing.locales.map((l) => [l, l === routing.defaultLocale ? '/' : `/${l}`]),
-      ),
-    },
+    /* No alternates here: layout metadata is merged into every child, so a
+       canonical declared at this level makes each page claim to be the locale
+       root. Each route supplies its own via lib/alternates.ts. */
     openGraph: {
       type: 'website',
       locale,

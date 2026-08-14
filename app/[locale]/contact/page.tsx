@@ -3,7 +3,17 @@ import { PageFrame } from '@/components/page-frame'
 import { PageTitle } from '@/components/page-title'
 import { CopyEmail } from '@/components/copy-email'
 import { CONTACT_LINKS } from '@/content/contact'
-import { routing } from '@/i18n/routing'
+import { routing, type Locale } from '@/i18n/routing'
+import { alternates } from '@/lib/alternates'
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+  return { alternates: alternates(locale as Locale, '/contact') }
+}
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }))

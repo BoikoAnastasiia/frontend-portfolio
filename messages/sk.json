@@ -121,6 +121,7 @@
     "title": "Poznámky.",
     "lede": "Píšem o tom, čo bolo náročné: poradie synchronizácie, meranie textu skôr, než vznikne, a cesta od tlačového dizajnu k produkčnému kódu.",
     "outline": "Koncept",
-    "back": "Všetky poznámky"
+    "back": "Všetky poznámky",
+    "empty": "Zatiaľ nič hotové. Prvé poznámky sa píšu."
   }
 }

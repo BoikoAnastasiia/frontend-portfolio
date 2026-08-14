@@ -121,6 +121,7 @@
     "title": "Notes.",
     "lede": "Writing about the things that were hard: sync ordering, measuring text before it exists, and the road from print design to production code.",
     "outline": "Outline",
-    "back": "All notes"
+    "back": "All notes",
+    "empty": "Nothing finished yet. The first notes are being written."
   }
 }

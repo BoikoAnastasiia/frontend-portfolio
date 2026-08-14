@@ -28,6 +28,12 @@ export default async function BlogPage({
           {t('lede')}
         </p>
 
+        {posts.length === 0 && (
+          <p className="measure text-[clamp(1.25rem,1rem+1.1vw,2rem)] leading-[1.25] font-bold tracking-[-0.015em] text-pretty md:ml-[50%]">
+            {t('empty')}
+          </p>
+        )}
+
         <ul className="flex flex-col">
           {posts.map((post) => (
             <li key={post.slug} className="border-t first:border-t-0">

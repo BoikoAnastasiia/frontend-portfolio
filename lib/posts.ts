@@ -18,6 +18,14 @@ export type PostMeta = {
   draft?: boolean
 }
 
+/**
+ * Outlines are for writing against, not for reading. They stay visible while
+ * the dev server is running and never reach the published site: the index, the
+ * routes and the sitemap all enumerate posts through getAllPosts, so a draft
+ * simply has no page in production and 404s if its URL is guessed.
+ */
+const SHOW_DRAFTS = process.env.NODE_ENV !== 'production'
+
 export function inkVar(ink: PostInk): string {
   return `var(--ink-${ink})`
 }
@@ -32,6 +40,7 @@ export function getAllPosts(): PostMeta[] {
   return readdirSync(DIR)
     .filter((f) => f.endsWith('.mdx'))
     .map((f) => read(f.replace(/\.mdx$/, '')).meta)
+    .filter((post) => SHOW_DRAFTS || !post.draft)
     .sort((a, b) => (a.date < b.date ? 1 : -1))
 }
 

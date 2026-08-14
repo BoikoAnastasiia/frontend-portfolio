@@ -40,6 +40,7 @@ const TARGETS = [
     themes: ['light', 'dark'],
     scenes: [
       { id: 'home' },
+      { id: 'programs', go: path('/programs') },
       { id: 'library', go: path('/library') },
       { id: 'exercise', go: path('/library/0025') },
       { id: 'blog', go: path('/blog') },

@@ -55,15 +55,24 @@
     "graphicsLede": "Ten years of print and brand design, and five years of graphics made daily inside the Gipper platform.",
     "podhod": {
       "short": "Full-stack strength trainer on Cloudflare Workers and D1",
-      "long": "A bilingual workout builder and tracker, built solo. A 1,324-exercise library, per-exercise progression computed by a pure engine, Google sign-in, and a CI pipeline that migrates the database before every deploy."
+      "long": "A bilingual workout builder and tracker, built solo. A 1,324-exercise library, per-exercise progression computed by a pure engine, Google sign-in, and a CI pipeline that migrates the database before every deploy.",
+      "media": {
+        "programsPhone": "Building a training programme on a phone: name it, give it an icon and colour, then add exercises from the library."
+      }
     },
     "slovnicek": {
       "short": "Offline-first PWA with a hand-written sync engine",
-      "long": "IndexedDB is the source of truth, not a cache. The hard part is a bidirectional sync engine: last-write-wins with per-table watermarks, and pull deliberately ordered before push so a stale offline edit can never overwrite a newer server row."
+      "long": "IndexedDB is the source of truth, not a cache. The hard part is a bidirectional sync engine: last-write-wins with per-table watermarks, and pull deliberately ordered before push so a stale offline edit can never overwrite a newer server row.",
+      "media": {
+        "roundPhone": "A review round: multiple choice first, then typing the answer, with a hint worth half the points."
+      }
     },
     "rjecnicek": {
       "short": "The same engine, retargeted to Croatian",
-      "long": "Slovníček rebuilt for a family member learning Croatian: a B1–B2 word bank extended with an electrician's trade vocabulary. Proof that a one-off app can be turned into a reusable product shape."
+      "long": "Slovníček rebuilt for a family member learning Croatian: a B1–B2 word bank extended with an electrician's trade vocabulary. Proof that a one-off app can be turned into a reusable product shape.",
+      "media": {
+        "roundPhone": "Adding a word by hand, then a round of the Croatian trainer."
+      }
     },
     "guess-the-band": {
       "short": "Music quiz with a serverless API and difficulty stats",
@@ -101,7 +110,8 @@
       "article": "Article",
       "round": "Review round",
       "words": "Word list",
-      "profile": "Profile"
+      "profile": "Profile",
+      "programs": "Programs"
     },
     "scopeFullstack": "Full-stack app — from the design to the API."
   },

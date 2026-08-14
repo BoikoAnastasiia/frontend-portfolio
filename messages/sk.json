@@ -55,15 +55,24 @@
     "graphicsLede": "Desať rokov tlačového dizajnu a dizajnu značiek, päť rokov grafiky, ktorú denne tvorím v platforme Gipper.",
     "podhod": {
       "short": "Full-stack aplikácia na silový tréning, postavená na Cloudflare Workers a D1",
-      "long": "Dvojjazyčný nástroj na tvorbu a sledovanie tréningov, celý vytvorený samostatne. Knižnica 1 324 cvikov, progresia pre každý cvik, ktorú počíta čistý engine, prihlásenie cez Google a CI pipeline, ktorý pred každým nasadením migruje databázu."
+      "long": "Dvojjazyčný nástroj na tvorbu a sledovanie tréningov, celý vytvorený samostatne. Knižnica 1 324 cvikov, progresia pre každý cvik, ktorú počíta čistý engine, prihlásenie cez Google a CI pipeline, ktorý pred každým nasadením migruje databázu.",
+      "media": {
+        "programsPhone": "Zostavenie tréningového programu na telefóne: názov, ikona a farba, potom cviky z knižnice."
+      }
     },
     "slovnicek": {
       "short": "Offline-first PWA s vlastným synchronizačným enginom",
-      "long": "IndexedDB je tu zdrojom pravdy, nie cache. Najnáročnejšia časť je obojsmerná synchronizácia: last-write-wins s vlastným watermarkom pre každú tabuľku a zámerné poradie „najprv pull, potom push“, aby staršia offline zmena nikdy neprepísala novší záznam na serveri."
+      "long": "IndexedDB je tu zdrojom pravdy, nie cache. Najnáročnejšia časť je obojsmerná synchronizácia: last-write-wins s vlastným watermarkom pre každú tabuľku a zámerné poradie „najprv pull, potom push“, aby staršia offline zmena nikdy neprepísala novší záznam na serveri.",
+      "media": {
+        "roundPhone": "Opakovacie kolo: najprv výber z možností, potom písanie odpovede, s nápovedou za polovicu bodov."
+      }
     },
     "rjecnicek": {
       "short": "Rovnaký engine, prestavaný na chorvátčinu",
-      "long": "Slovníček prerobený pre člena rodiny, ktorý sa učí chorvátsky: slovná zásoba B1–B2 doplnená o odbornú elektrikársku terminológiu. Dôkaz, že jednorazovú aplikáciu možno zmeniť na opakovane použiteľný produkt."
+      "long": "Slovníček prerobený pre člena rodiny, ktorý sa učí chorvátsky: slovná zásoba B1–B2 doplnená o odbornú elektrikársku terminológiu. Dôkaz, že jednorazovú aplikáciu možno zmeniť na opakovane použiteľný produkt.",
+      "media": {
+        "roundPhone": "Ručné pridanie slova a potom kolo chorvátskeho trénera."
+      }
     },
     "guess-the-band": {
       "short": "Hudobný kvíz so serverless API a štatistikou náročnosti",
@@ -101,7 +110,8 @@
       "article": "Článok",
       "round": "Opakovacie kolo",
       "words": "Zoznam slov",
-      "profile": "Profil"
+      "profile": "Profil",
+      "programs": "Programy"
     },
     "scopeFullstack": "Full-stack aplikácia — od dizajnu po API."
   },

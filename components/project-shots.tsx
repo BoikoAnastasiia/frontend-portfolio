@@ -21,7 +21,7 @@ export function ProjectScreens({
   const phone = gallery.view === 'mobile'
 
   return (
-    <figure className="mt-12">
+    <figure data-reveal className="mt-12">
       <figcaption className="mb-4 text-[1.0625rem] font-bold">{caption}</figcaption>
 
       <ul

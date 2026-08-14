@@ -120,7 +120,19 @@ export const PROJECTS: Project[] = [
     repoUrl: 'https://github.com/BoikoAnastasiia/podhod',
     scope: 'scopeFullstack',
     hero: '/media/podhod/home-desktop.jpg',
-    media: screens('podhod', ['home', 'library', 'exercise', 'blog', 'article']),
+    media: [
+      ...screens('podhod', ['home', 'programs', 'library', 'exercise', 'blog', 'article']),
+      {
+        kind: 'clip',
+        id: 'programsPhone',
+        webm: '/media/podhod/programs-phone.webm',
+        mp4: '/media/podhod/programs-phone.mp4',
+        poster: '/media/podhod/programs-phone.jpg',
+        width: 620,
+        height: 1342,
+        shape: 'phone',
+      },
+    ],
   },
   {
     slug: 'slovnicek',
@@ -130,7 +142,19 @@ export const PROJECTS: Project[] = [
     repoUrl: 'https://github.com/BoikoAnastasiia/slovnicek',
     scope: 'scopeFullstack',
     hero: '/media/slovnicek/home-desktop.jpg',
-    media: screens('slovnicek', ['home', 'round', 'words', 'profile']),
+    media: [
+      ...screens('slovnicek', ['home', 'round', 'words', 'profile']),
+      {
+        kind: 'clip',
+        id: 'roundPhone',
+        webm: '/media/slovnicek/round-phone.webm',
+        mp4: '/media/slovnicek/round-phone.mp4',
+        poster: '/media/slovnicek/round-phone.jpg',
+        width: 620,
+        height: 1342,
+        shape: 'phone',
+      },
+    ],
   },
   {
     slug: 'rjecnicek',
@@ -140,7 +164,19 @@ export const PROJECTS: Project[] = [
     repoUrl: 'https://github.com/BoikoAnastasiia/rjecnicek',
     scope: 'scopeFullstack',
     hero: '/media/rjecnicek/home-desktop.jpg',
-    media: screens('rjecnicek', ['home', 'round', 'words', 'profile']),
+    media: [
+      ...screens('rjecnicek', ['home', 'round', 'words', 'profile']),
+      {
+        kind: 'clip',
+        id: 'roundPhone',
+        webm: '/media/rjecnicek/round-phone.webm',
+        mp4: '/media/rjecnicek/round-phone.mp4',
+        poster: '/media/rjecnicek/round-phone.jpg',
+        width: 620,
+        height: 1342,
+        shape: 'phone',
+      },
+    ],
   },
   {
     slug: 'gipper',

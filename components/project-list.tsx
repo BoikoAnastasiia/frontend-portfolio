@@ -1,7 +1,7 @@
 import { getTranslations } from 'next-intl/server'
 import { ProjectCard } from '@/components/project-card'
 import { ProjectStrip } from '@/components/project-strip'
-import { PROJECTS, stripFor } from '@/content/projects'
+import { PROJECTS, bandFor } from '@/content/projects'
 
 /**
  * Every project, each as its block followed by its band of imagery. The same
@@ -35,7 +35,7 @@ export async function ProjectList({
             repoLabel={t('repo')}
             href={`/projects/${project.slug}`}
           />
-          <ProjectStrip images={stripFor(project)} alt={project.title} />
+          <ProjectStrip items={bandFor(project)} alt={project.title} />
         </article>
       ))}
     </div>

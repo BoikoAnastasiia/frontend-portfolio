@@ -69,17 +69,50 @@ const screens = (slug: string, scenes: string[]): ProjectMedia[] => [
   gallery(slug, 'mobile', scenes, true),
 ]
 
+/** One panel of the band under a project block. */
+export type BandItem =
+  | { kind: 'image'; src: string; aspect: number }
+  | { kind: 'clip'; webm: string; mp4: string; poster: string; aspect: number }
+
+const WIDE = 1440 / 900
+const PHONE = 390 / 844
+
 /**
- * The images that run as a band under the project block. Desktop captures
- * only: a phone screen cropped to the same band height reads as a zoom next
- * to a laptop screen rather than as a different device.
+ * The band under a project block: light and dark, desktop and phone, and a
+ * clip if there is one. Each panel is flexed in proportion to its true aspect
+ * ratio, so a phone comes out as a narrow upright panel rather than a laptop
+ * screenshot's worth of zoomed-in interface.
  */
-export function stripFor(project: Project): string[] {
-  if (project.strip) return project.strip
-  const wide = project.media?.find((m) => m.kind === 'gallery' && m.view === 'desktop')
-  const out: string[] = []
-  if (project.hero) out.push(project.hero)
-  if (wide && wide.kind === 'gallery') out.push(...wide.items.slice(0, 2).map((i) => i.src))
+export function bandFor(project: Project): BandItem[] {
+  if (project.band) return project.band
+
+  const pick = (view: 'desktop' | 'mobile', dark: boolean, n = 0) => {
+    const g = project.media?.find(
+      (m) => m.kind === 'gallery' && m.view === view && m.id.endsWith('Dark') === dark,
+    )
+    return g && g.kind === 'gallery' ? g.items[n]?.src : undefined
+  }
+
+  const out: BandItem[] = []
+  const add = (src: string | undefined, aspect: number) => {
+    if (src) out.push({ kind: 'image', src, aspect })
+  }
+
+  add(project.hero, WIDE)
+  add(pick('mobile', false, 1), PHONE)
+  add(pick('desktop', true, 0), WIDE)
+  add(pick('mobile', true, 2), PHONE)
+
+  const clip = project.media?.find((m) => m.kind === 'clip')
+  if (clip && clip.kind === 'clip') {
+    out.push({
+      kind: 'clip',
+      webm: clip.webm,
+      mp4: clip.mp4,
+      poster: clip.poster,
+      aspect: clip.width / clip.height,
+    })
+  }
   return out
 }
 
@@ -94,8 +127,8 @@ export type Project = {
   scope?: string
   /** The one screen that opens the page, full width. */
   hero?: string
-  /** Explicit band images, where the galleries are not the right source. */
-  strip?: string[]
+  /** Explicit band panels, where the galleries are not the right source. */
+  band?: BandItem[]
   media?: ProjectMedia[]
 }
 
@@ -199,9 +232,21 @@ export const PROJECTS: Project[] = [
     title: 'Gipper Platform',
     tech: ['react', 'typescript', 'vite', 'mobx', 'module-federation', 'fabric', 'mui'],
     liveUrl: 'https://platform.gogipper.com/',
-    strip: [
-      '/media/gipper/ai-image-generation.jpg',
-      '/media/gipper/autocreate-canvas.jpg',
+    band: [
+      {
+        kind: 'clip',
+        webm: '/media/gipper/ai-image-generation.webm',
+        mp4: '/media/gipper/ai-image-generation.mp4',
+        poster: '/media/gipper/ai-image-generation.jpg',
+        aspect: 1440 / 784,
+      },
+      {
+        kind: 'clip',
+        webm: '/media/gipper/autocreate-canvas.webm',
+        mp4: '/media/gipper/autocreate-canvas.mp4',
+        poster: '/media/gipper/autocreate-canvas.jpg',
+        aspect: 1440 / 784,
+      },
     ],
     media: [
       {

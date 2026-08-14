@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { hasLocale, NextIntlClientProvider } from 'next-intl'
 import { setRequestLocale, getTranslations } from 'next-intl/server'
-import { Roboto_Slab } from 'next/font/google'
+import { Podkova } from 'next/font/google'
 import { routing } from '@/i18n/routing'
 import { SITE_URL } from '@/lib/site'
 import { ThemeScript } from '@/components/theme-script'
@@ -11,10 +11,10 @@ import { Footer } from '@/components/footer'
 import { RevealFallback } from '@/components/reveal-fallback'
 import '@/styles/globals.css'
 
-const slab = Roboto_Slab({
+const slab = Podkova({
   subsets: ['latin', 'latin-ext', 'cyrillic'],
-  // 100 is the poster hairline; 400 body; 700/900 headings and chips.
-  weight: ['100', '400', '700', '900'],
+  // Podkova's variable range is 400-800; there is no hairline below 400.
+  weight: ['400', '500', '700', '800'],
   display: 'swap',
   variable: '--font-slab',
 })

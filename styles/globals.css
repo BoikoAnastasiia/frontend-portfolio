@@ -252,6 +252,22 @@ html[data-theme-switching] *::after {
   .prose p {
     margin-block: 1rem;
   }
+  /* Screenshots inside a post: full measure, framed like the project screens. */
+  .prose img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-block: 2rem;
+    border: 1px solid var(--figure);
+  }
+
+  .prose figcaption,
+  .prose img + em {
+    display: block;
+    margin-top: -1rem;
+    font-size: 0.9375rem;
+  }
+
   .prose pre {
     overflow-x: auto;
     padding: 1rem;

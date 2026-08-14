@@ -73,6 +73,16 @@ checks that a schedule request forwards *every* event to the image tool —
 nothing dropped, nothing invented — by matching produced events against expected
 ones field by field, one-to-one, so a duplicate cannot paper over a miss.
 
+![The event-coverage report: one line per prompt, with coverage, description
+similarity and how many events the agent forwarded.](/media/blog/event-coverage-eval.jpg)
+
+A run gives you a number and a list. 0.884 average over 35 prompts, 23 of them
+perfect — and, more usefully, the twelve that were not. `daily-3-games` forwarded
+three events and only two matched. `score-recap-4` covered every event and still
+scored 0.70, because its description similarity was zero: right facts, wrong
+words. Those are two completely different bugs, and a single pass/fail would
+have hidden both.
+
 Two details made them actually useful:
 
 **Score the structure exactly, the prose approximately.** Sport, level, opponent

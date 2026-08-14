@@ -4,7 +4,7 @@ import { PageTitle } from '@/components/page-title'
 import { Link } from '@/i18n/navigation'
 import { getAllPosts, inkVar } from '@/lib/posts'
 import { routing, type Locale } from '@/i18n/routing'
-import { alternates } from '@/lib/alternates'
+import { pageMetadata } from '@/lib/page-metadata'
 
 export async function generateMetadata({
   params,
@@ -12,7 +12,13 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>
 }) {
   const { locale } = await params
-  return { alternates: alternates(locale as Locale, '/blog') }
+  const t = await getTranslations({ locale, namespace: 'blog' })
+  return pageMetadata({
+    locale: locale as Locale,
+    path: '/blog',
+    title: t('title').replace(/\.$/, ''),
+    description: t('lede'),
+  })
 }
 
 export function generateStaticParams() {

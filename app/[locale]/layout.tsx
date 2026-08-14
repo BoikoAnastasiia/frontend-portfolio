@@ -42,12 +42,9 @@ export async function generateMetadata({
     /* No alternates here: layout metadata is merged into every child, so a
        canonical declared at this level makes each page claim to be the locale
        root. Each route supplies its own via lib/alternates.ts. */
-    openGraph: {
-      type: 'website',
-      locale,
-      title: `${t('name')} — ${t('role')}`,
-      description: home('lede'),
-    },
+    /* No openGraph here either: it is inherited whole, so a child that sets
+       only `title` would keep this one and every URL would unfurl as the home
+       page. Each route builds its own via lib/page-metadata.ts. */
     robots: { index: true, follow: true },
   }
 }

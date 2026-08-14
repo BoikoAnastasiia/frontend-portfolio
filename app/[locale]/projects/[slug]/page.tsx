@@ -11,7 +11,7 @@ import { ProjectScreens } from '@/components/project-shots'
 import { Link } from '@/i18n/navigation'
 import { PROJECTS } from '@/content/projects'
 import { routing, type Locale } from '@/i18n/routing'
-import { alternates } from '@/lib/alternates'
+import { pageMetadata } from '@/lib/page-metadata'
 
 export function generateStaticParams() {
   return routing.locales.flatMap((locale) =>
@@ -28,11 +28,12 @@ export async function generateMetadata({
   const project = PROJECTS.find((p) => p.slug === slug)
   if (!project) return {}
   const t = await getTranslations({ locale, namespace: 'projects' })
-  return {
+  return pageMetadata({
+    locale: locale as Locale,
+    path: `/projects/${slug}`,
     title: project.title,
     description: t(`${slug}.short`),
-    alternates: alternates(locale as Locale, `/projects/${slug}`),
-  }
+  })
 }
 
 export default async function ProjectPage({

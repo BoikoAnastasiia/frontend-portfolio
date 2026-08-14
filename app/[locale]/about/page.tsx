@@ -2,7 +2,7 @@ import { setRequestLocale, getTranslations } from 'next-intl/server'
 import { PageFrame } from '@/components/page-frame'
 import { PageTitle } from '@/components/page-title'
 import { routing, type Locale } from '@/i18n/routing'
-import { alternates } from '@/lib/alternates'
+import { pageMetadata } from '@/lib/page-metadata'
 
 export async function generateMetadata({
   params,
@@ -10,7 +10,13 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>
 }) {
   const { locale } = await params
-  return { alternates: alternates(locale as Locale, '/about') }
+  const t = await getTranslations({ locale, namespace: 'about' })
+  return pageMetadata({
+    locale: locale as Locale,
+    path: '/about',
+    title: t('title').replace(/\.$/, ''),
+    description: t('body'),
+  })
 }
 
 export function generateStaticParams() {

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Anastasiia Boiko">
+  <!-- #da007f is the sRGB form of the site's --ink-magenta, oklch(0.57 0.25 355).
+       A favicon cannot carry a CSS variable, so the value is inlined; if the ink
+       ever changes, tests/unit/palette.test.ts is the place that will notice. -->
+  <rect width="64" height="64" fill="#da007f" />
+  <!-- A drawn as a path rather than set as text: a favicon has no webfont, and
+       the system fallback would differ on every platform. -->
+  <path
+    fill="#fff"
+    d="M25.2 12h13.6l12.4 40h-9.9l-2.4-8.6H25.1L22.7 52h-9.9L25.2 12Zm2 23.6h9.6L32.2 19h-.4l-4.6 16.6Z"
+  />
+</svg>

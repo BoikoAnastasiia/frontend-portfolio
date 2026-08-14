@@ -28,7 +28,12 @@ export const TECH = {
     icon: 'module-federation', kind: 'glyph',
     brand: '#8DD6F9',
   },
-  fabric: { name: 'Fabric.js', icon: 'fabric', kind: 'glyph', brand: '#FF5A5F' },
+  /* No icon on purpose: the drawn mark is a hairline pair of scissors on a
+     657x477 canvas, and at chip height its ribbons come out under a pixel wide
+     — barely visible on paper and invisible on hover, where the brand pink is
+     lighter still. It falls back to the typographic chip, as Hono does.
+     Restore `icon: 'fabric'` once the mark is redrawn with real stroke weight. */
+  fabric: { name: 'Fabric.js', brand: '#FF5A5F' },
   'cloudflare-workers': {
     name: 'Cloudflare Workers',
     icon: 'cloudflare-workers', kind: 'glyph',

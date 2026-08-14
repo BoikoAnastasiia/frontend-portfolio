@@ -14,7 +14,9 @@ export function RevealFallback() {
     if (typeof CSS === 'undefined' || CSS.supports(SUPPORTS)) return
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
-    const targets = Array.from(document.querySelectorAll<HTMLElement>('[data-reveal]'))
+    const targets = Array.from(
+      document.querySelectorAll<HTMLElement>('[data-reveal], [data-reveal-fade]'),
+    )
     targets.forEach((el) => {
       el.dataset.revealed = 'false'
     })

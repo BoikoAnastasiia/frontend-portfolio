@@ -38,11 +38,21 @@ test('theme choice survives navigation', async ({ page }) => {
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'mono')
 })
 
-test('reveal targets are visible regardless of engine support', async ({ page }) => {
+test('the first block is never caught mid-fade at load', async ({ page }) => {
   await page.goto('/projects')
-  const card = page.locator('[data-reveal]').first()
-  await expect(card).toBeVisible()
-  await expect(card).toHaveCSS('opacity', '1')
+  // A view() timeline cannot tell that an element was already on screen, so
+  // the top block opts out of the fade entirely. It must be readable at once.
+  const top = page.locator('article').first()
+  await expect(top).toBeVisible()
+  await expect(top).toHaveCSS('opacity', '1')
+})
+
+test('a faded block resolves fully once scrolled to, in either engine', async ({ page }) => {
+  await page.goto('/projects')
+  const block = page.locator('[data-reveal-fade]').first()
+  await block.evaluate((el) => el.scrollIntoView({ block: 'center' }))
+  await expect(block).toBeVisible()
+  await expect(block).toHaveCSS('opacity', '1')
 })
 
 test('language switcher preserves the current path', async ({ page }) => {

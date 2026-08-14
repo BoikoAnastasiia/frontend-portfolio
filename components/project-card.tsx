@@ -1,3 +1,4 @@
+import { Link } from '@/i18n/navigation'
 import { StackChips } from '@/components/stack-chips'
 import type { Project } from '@/content/projects'
 
@@ -13,6 +14,7 @@ export function ProjectCard({
   scope,
   liveLabel,
   repoLabel,
+  href,
 }: {
   project: Project
   short: string
@@ -20,15 +22,25 @@ export function ProjectCard({
   scope?: string
   liveLabel: string
   repoLabel: string
+  /** When set, the title links through. The card is never one big link: the
+      stack chips are focusable, and nesting them inside an anchor breaks both
+      keyboard order and the HTML. */
+  href?: string
 }) {
   const row = 'grid gap-x-10 gap-y-2 px-5 py-6 md:grid-cols-[1fr_1.4fr] md:px-8 md:py-7'
 
   return (
     <div style={{ background: 'var(--paper)', color: 'var(--ink-key)' }}>
       <div className={`${row} border-b`}>
-        <p className="text-[clamp(1.25rem,1rem+1vw,1.75rem)] leading-[1.1] font-black tracking-[-0.02em]">
-          {project.title}
-        </p>
+        <h2 className="text-[clamp(1.25rem,1rem+1vw,1.75rem)] leading-[1.1] font-black tracking-[-0.02em]">
+          {href ? (
+            <Link href={href} className="no-underline hover:underline">
+              {project.title}
+            </Link>
+          ) : (
+            project.title
+          )}
+        </h2>
         <p className="text-[clamp(1.25rem,1rem+1vw,1.75rem)] leading-[1.15] italic">
           {short}
         </p>

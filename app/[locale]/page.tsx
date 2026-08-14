@@ -1,7 +1,7 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server'
 import { PageFrame } from '@/components/page-frame'
 import { Link } from '@/i18n/navigation'
-import { PROJECTS } from '@/content/projects'
+import { ProjectList } from '@/components/project-list'
 
 export default async function HomePage({
   params,
@@ -46,37 +46,21 @@ export default async function HomePage({
 
       <hr className="rule mx-5 md:mx-8" />
 
-      <section className="px-5 pt-6 pb-4 md:px-8 md:pt-8">
+      <section className="px-5 pt-6 pb-8 md:px-8 md:pt-8">
         <h2 className="text-[clamp(1.25rem,1rem+1.1vw,2rem)] font-bold tracking-[-0.015em] md:ml-[50%]">
           {t('featured')}
         </h2>
       </section>
 
-      {/* Project table: name left, one-line description right. */}
-      <section className="px-5 pb-20 md:px-8">
-        <ul style={{ background: 'var(--paper)', color: 'var(--ink-key)' }}>
-          {PROJECTS.map((project) => (
-            <li key={project.slug} className="border-b last:border-b-0">
-              <Link
-                href={`/projects/${project.slug}`}
-                className="grid gap-1 px-4 py-5 no-underline md:grid-cols-2 md:items-baseline md:px-6"
-              >
-                <span className="text-xl font-bold tracking-[-0.015em]">
-                  {project.title}
-                </span>
-                <span className="text-[1.0625rem] leading-[1.35]">
-                  {p(`${project.slug}.short`)}
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-        <p className="mt-6 md:ml-[50%]">
+      <section className="pb-20">
+        <ProjectList />
+        <p className="mt-12 px-5 md:px-8 md:ml-[50%]">
           <Link href="/projects" className="text-lg font-bold">
             {t('allProjects')}
           </Link>
         </p>
       </section>
+
     </PageFrame>
   )
 }

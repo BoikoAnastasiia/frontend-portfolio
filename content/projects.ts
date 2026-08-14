@@ -69,6 +69,20 @@ const screens = (slug: string, scenes: string[]): ProjectMedia[] => [
   gallery(slug, 'mobile', scenes, true),
 ]
 
+/**
+ * The images that run as a band under the project block. Desktop captures
+ * only: a phone screen cropped to the same band height reads as a zoom next
+ * to a laptop screen rather than as a different device.
+ */
+export function stripFor(project: Project): string[] {
+  if (project.strip) return project.strip
+  const wide = project.media?.find((m) => m.kind === 'gallery' && m.view === 'desktop')
+  const out: string[] = []
+  if (project.hero) out.push(project.hero)
+  if (wide && wide.kind === 'gallery') out.push(...wide.items.slice(0, 2).map((i) => i.src))
+  return out
+}
+
 export type Project = {
   /** Also the messages key: messages.projects.<slug> holds the description. */
   slug: string
@@ -80,6 +94,8 @@ export type Project = {
   scope?: string
   /** The one screen that opens the page, full width. */
   hero?: string
+  /** Explicit band images, where the galleries are not the right source. */
+  strip?: string[]
   media?: ProjectMedia[]
 }
 
@@ -183,6 +199,10 @@ export const PROJECTS: Project[] = [
     title: 'Gipper Platform',
     tech: ['react', 'typescript', 'vite', 'mobx', 'module-federation', 'fabric', 'mui'],
     liveUrl: 'https://platform.gogipper.com/',
+    strip: [
+      '/media/gipper/ai-image-generation.jpg',
+      '/media/gipper/autocreate-canvas.jpg',
+    ],
     media: [
       {
         kind: 'clip',

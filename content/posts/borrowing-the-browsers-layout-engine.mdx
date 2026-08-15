@@ -1,0 +1,90 @@
+---
+title: 'Borrowing the browser’s layout engine for a canvas'
+date: '2026-08-16'
+excerpt: 'Fabric.js has no idea how big a textbox is allowed to grow. So I laid the design out in a hidden flexbox, let the browser do the work, and copied the answer onto the canvas.'
+ink: 'key'
+lang: 'en'
+---
+
+A template is drawn for a fixed amount of content: three games, one headline, a
+logo. Then someone types in seven games, or the agent returns more than the
+design has slots for, and everything has to move.
+
+Fabric.js will not help you with that. It gives you objects with a `left`, a
+`top` and a `width`, and it will happily let two of them sit on top of each
+other, or run off the edge of the canvas. There is no layout engine — nothing
+that knows a textbox is allowed to grow to *here* but no further, and nothing
+that reflows its neighbours when it does.
+
+Writing one is a genuinely hard problem. Then it occurred to me that I was
+sitting inside a program that had already solved it.
+
+## Ask the browser and copy the answer
+
+The idea is small enough to say in one sentence: build the layout in hidden DOM,
+let the browser lay it out, then read the positions back and apply them to the
+canvas.
+
+For every group of objects I create one proxy `div` sized to that group's
+bounding box, and drop them into a container the size of the canvas:
+
+```js
+const container = document.createElement('div')
+container.style.cssText = [
+  'position:fixed', 'left:-99999px', 'top:-99999px',
+  `width:${canvasW}px`, `height:${canvasH}px`,
+  'display:flex', 'flex-wrap:wrap',
+  `justify-content:${preset.justifyContent}`,
+].join(';')
+```
+
+The browser reflows it. Then each proxy's `offsetLeft` and `offsetTop` are the
+answer, and the difference between that and where the group currently sits is
+the distance every object in it has to move:
+
+```js
+const deltaX = div.offsetLeft - group.bounds.minX
+inst.left += deltaX
+```
+
+Applying the change as a **delta** rather than an absolute position is what makes
+this survive contact with Fabric. An object's `left` may be relative to a parent
+group, and its `originX` may be centre or right. Adding the same canvas-space
+distance to whatever `left` already is translates it correctly in every one of
+those cases. Setting an absolute position would need me to handle each.
+
+## Two layouts, and knowing when to give up on the first
+
+Flex alone is not enough. It preserves the proportions the designer chose, which
+is what you want — but with enough content it simply runs off the bottom.
+
+So there are two passes. Flex first; if the result overflows the canvas height,
+throw it away and lay the whole thing out again as a grid. The number of columns
+is chosen to keep roughly the canvas's own aspect ratio:
+
+```js
+const C = Math.round(Math.sqrt(N * canvasWidth / dataHeight))
+```
+
+Headers — anything whose id carries no number, like `headline` or `school_name`
+— go in the top fifth. The numbered groups, `event_1` through `event_30`, fill
+the rest as grid cells, and inside each cell the font shrinks until the text fits
+its share of the row.
+
+Grouping is done off the object ids, because the ids already encode the
+structure: `event_1_info_1` and `event_1_info_2` belong to `event_1` and must
+move as one thing. A logo with a matching number joins its group and takes the
+left half of the cell.
+
+## The part I did not expect
+
+The container is deliberately left in the page afterwards, with an id on it.
+
+So when a layout comes out wrong, I open DevTools, find `#gipper_reflow_debug`
+in the Elements panel, and change `justify-content` or `grid-template-columns`
+the way I would on any other page. The container re-lays out live. Running the
+reflow again copies whatever I settled on back onto the canvas.
+
+A canvas is famously a black box — one element, no inspector, nothing to select.
+This one has a layout you can debug in the Elements panel, because the layout was
+never really happening on the canvas at all.

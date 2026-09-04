@@ -58,7 +58,9 @@ export default async function AboutPage({
 
           <p className="mt-10">
             <a
-              href="/cv.pdf"
+              href="/cv"
+              target="_blank"
+              rel="noreferrer noopener"
               className="text-[clamp(1.125rem,1rem+0.6vw,1.5rem)] font-bold"
             >
               {t('cv')}

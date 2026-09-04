@@ -54,9 +54,8 @@ export default async function ContactPage({
                 <a
                   href={link.href}
                   className="inline-flex min-h-11 items-center text-[clamp(1.5rem,1rem+2.5vw,3rem)] font-black tracking-[-0.02em] uppercase"
-                  {...(link.href.startsWith('http')
-                    ? { target: '_blank', rel: 'noreferrer noopener' }
-                    : {})}
+                  target="_blank"
+                  rel="noreferrer noopener"
                 >
                   {link.label}
                 </a>

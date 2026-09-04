@@ -10,5 +10,5 @@ export const CONTACT_LINKS: ContactLink[] = [
   },
   { key: 'github', href: 'https://github.com/BoikoAnastasiia', label: 'GitHub' },
   { key: 'telegram', href: 'https://t.me/Anastasyah', label: 'Telegram' },
-  { key: 'cv', href: '/cv.pdf', label: 'CV (PDF)' },
+  { key: 'cv', href: '/cv', label: 'CV (PDF)' },
 ]

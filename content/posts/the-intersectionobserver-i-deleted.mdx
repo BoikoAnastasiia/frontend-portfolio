@@ -1,0 +1,144 @@
+---
+title: 'The IntersectionObserver I deleted'
+date: '2026-09-04'
+excerpt: 'Mat Marquis says responsive images are over. He is nearly right: one attribute retired the observer I used to hand-write, and it does the job better than mine ever did. The one that would finish the argument still is not in Safari.'
+ink: 'cyan'
+lang: 'en'
+---
+
+Mat Marquis — who chaired the group that standardised responsive images in the
+first place — recently published
+[The end of responsive images](https://piccalil.li/blog/the-end-of-responsive-images/),
+which is roughly a confession. The syntax was hard because it had to be: a
+browser decides what to request long before it knows anything about the page’s
+layout, so somebody had to tell it, and that somebody was you.
+
+I read it, went to look at a lazy-loading utility I had been quietly proud of,
+and deleted the whole thing.
+
+## What I used to write
+
+Every project got some version of this. An observer, a margin picked by feel, a
+`data-src` swapped in on intersection, and a class to fade the result:
+
+```js
+const io = new IntersectionObserver(
+  (entries) => {
+    for (const entry of entries) {
+      if (!entry.isIntersecting) continue
+      const img = entry.target
+      img.src = img.dataset.src
+      img.addEventListener('load', () => img.classList.add('is-loaded'))
+      io.unobserve(img)
+    }
+  },
+  { rootMargin: '200px' },
+)
+
+for (const img of document.querySelectorAll('img[data-src]')) {
+  io.observe(img)
+}
+```
+
+Fifteen lines, plus the CSS, plus the markup convention, plus remembering to
+re-run it after any client-side render. Multiply by every project.
+
+The replacement is one attribute:
+
+```html
+<img src="/photo.jpg" alt=""
+     width="1200" height="800" loading="lazy">
+```
+
+## It is not just shorter, it is better
+
+The part that stung slightly is that my version was worse, and not marginally.
+
+`rootMargin: '200px'` is a number I invented. Chrome’s threshold is not a
+constant — it moves with the effective connection type, so a phone on a slow
+network starts fetching much earlier than my fixed margin ever would. I was not
+tuning that. I was guessing once and shipping the guess.
+
+Worse, `data-src` actively hides images from the preload scanner, the thing that
+races ahead of the parser looking for resources to start early. Every image on
+the page had to wait for my JavaScript to execute before it could even be
+requested. I had written a performance optimisation that made the first screen
+slower.
+
+And `loading="lazy"` is properly settled: Safari 16.4 in early 2023, Firefox 121
+at the end of it. It has been Baseline widely available since then. There is no
+fallback to write, because a browser that does not know the attribute simply
+loads the image, which is the old behaviour and is fine.
+
+## The two attributes that come with it
+
+**`width` and `height`.** Not the pixel size you want to display — the intrinsic
+size of the file. The browser divides them into an `aspect-ratio` and reserves
+the box before a single byte of image arrives, which is the whole of your CLS
+problem solved. This also retires the padding-top wrapper `div`, which I do not
+miss either.
+
+**`fetchpriority="high"`, on exactly one image.** The rule that matters is the
+negative one: never put `loading="lazy"` on the image that is your Largest
+Contentful Paint. Lazy is a deprioritisation, and applying it to the hero is the
+single most common way to make a page measurably slower while believing you
+optimised it. Mark the hero high, leave everything else alone, and skip
+`fetchpriority="auto"` entirely — omitting the attribute says the same thing
+with less markup.
+
+I would not bother with `decoding="async"`. It is well supported, and on a
+normal page you will not measure the difference.
+
+## The part Marquis is actually celebrating, and the asterisk on it
+
+His real subject is `sizes`, which is the genuinely miserable attribute — you
+end up writing things like `(min-width: 1340px) 257px, (min-width: 1040px)
+calc(24.64vw - 68px)` and recalculating them every time the layout moves.
+
+`sizes="auto"` deletes that. Paired with `loading="lazy"`, the request happens
+late enough that the browser already knows how big the rendered image is, so it
+can answer its own question. It is also written to degrade: `auto` goes first,
+your old list stays behind it as the fallback.
+
+```html
+<img
+  srcset="/photo-400.jpg 400w,
+          /photo-800.jpg 800w,
+          /photo-1600.jpg 1600w"
+  sizes="auto, (min-width: 60rem) 30vw, 100vw"
+  src="/photo-800.jpg"
+  alt="" width="1200" height="800" loading="lazy">
+```
+
+Here is the asterisk the celebration leaves out. `sizes="auto"` is Chrome 126 and
+Firefox 150, and **Safari has not shipped it at all.** Baseline calls that
+limited availability, and it means the calculation you were promised you could
+delete is still the calculation every iPhone in your analytics will use. Ship it
+by all means — it costs nothing and it is free improvement for the browsers that
+have it — but keep the fallback list accurate. The end of responsive images is
+announced; it has not arrived.
+
+## What the observer is still for
+
+Not images. It is for the things it was always actually good at, where the
+question is genuinely *did this element become visible*: loading the next page
+of an infinite list, firing an impression event, lighting up the current heading
+in a table of contents.
+
+There is still exactly one on this site, and it is instructive about where the
+line falls. The screen recordings on the project pages are `video`, and `video`
+has no settled `loading="lazy"` — it landed in Chrome 150 and nowhere else yet.
+So the component renders a `video` with no `source` children at all until the
+observer fires, which means there is nothing for the browser to request, and it
+pauses playback again on the way out so it is not decoding frames for an empty
+room. Deferring the fetch, and reacting to the element leaving: an attribute
+does not do either of those for video yet.
+
+Everything else I used to reach for it has been absorbed. Deferring the render
+of offscreen sections is `content-visibility`. Animating something as it scrolls
+into view is a scroll-driven animation, in CSS, off the main thread.
+
+Which is the pattern, I think. The clever code you write to work around a gap in
+the platform has a shelf life, and the good outcome — the one you are supposed
+to want — is that it expires. It is still a slightly strange feeling to open a
+file you were pleased with and replace it with an attribute.

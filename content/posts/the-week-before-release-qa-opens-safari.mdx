@@ -1,10 +1,9 @@
 ---
 title: 'The week before release, QA opens Safari'
 date: '2026-09-08'
-excerpt: 'Three bugs that only existed in one browser: a caret that sat four characters from where it was drawn, an image that refused to render inside a scaling wrapper, and a canvas cache that killed the app on iOS. Interop 2027 is taking proposals until 23 September.'
+excerpt: 'Three bugs that only existed in one browser: a caret that sat four characters from where it was drawn, an image that vanished when two scales compounded, and a canvas cache that crashed the app on iOS. Interop 2027 is taking proposals until 23 September.'
 ink: 'magenta'
 lang: 'en'
-draft: true
 ---
 
 Peter-Paul Koch [retired a workaround last week](https://quirksmode.org/quirksblog/2026/0902-initial.html).
@@ -180,50 +179,15 @@ memory back".
 Nothing about it is clever. It is long because there are that many places a
 canvas can hide.
 
-## What we changed about how we work
+## Interop 2027 is open
 
-TODO
+[Interop 2027 is taking proposals](https://webkit.org/blog/18283/submit-your-ideas-for-interop-2027/)
+until 23 September — the process where the browser vendors agree on a shared
+list of things to fix and then get publicly scored on how far they get.
 
-## Which of these actually belongs in Interop
+I am going to spend an evening on it before the window closes: read what people
+have already put forward and back the ones that cover gaps like these, and write
+my own up if nobody has.
 
-[Interop 2027 opened for proposals on 3 September](https://webkit.org/blog/18283/submit-your-ideas-for-interop-2027/)
-and closes on **23 September**, which is two weeks from now. It is the process
-where the browser vendors agree on a shared list of things to fix, scored
-against Web Platform Tests, and anyone can file a proposal.
-
-It would be satisfying to say I am submitting all three. Reading the criteria
-properly, I do not think that is honest. A proposal needs a mature standard to
-point at and automated tests that can score progress, and my three do not sit
-equally well against that.
-
-The caret one fits. Two engines lay out the same declared styles into different
-glyph runs, and where the caret lands for a given click is testable behaviour
-with a specification behind it.
-
-The image-in-a-scaled-wrapper one is a rendering bug, not a disagreement about
-what the spec says. Everyone agrees what should happen; one engine does not do
-it. The tidy answer is "file a WebKit bug", and I am not going to pretend I am
-about to. I did go looking for an existing report while writing this, and found
-close neighbours — content disappearing once an animation moves a composited
-layer's visible rectangle outside the tiles allocated for it, fixed in the Linux
-ports back in 2019 — but nothing describing a scale compounded on a scale. So it
-is possible nobody has filed this exact one.
-
-I still do not think that is the bottleneck. This is a well-populated corner of
-a public tracker read by people paid to read it, and the distance between a bug
-being known and a bug being prioritised is not closed by one more report.
-Interop is the only lever I am aware of that touches the second one.
-
-The canvas one is a resource-limit problem, and those are the hardest to write
-as a test. "Does the tab survive forty canvases" has no clean pass or fail. What
-*could* be specified is the part that actually cost us the week: what disposal
-is supposed to release, and when.
-
-So: one proposal, one bug I am not going to file because I do not believe the
-filing is what is missing, and one that was partly ours to solve. That is a less
-satisfying ending than the one I set out to write, and I think it is the right
-one.
-
-If you have your own list — and if you have been carrying a workaround long
-enough to have forgotten what it works around — the window is open until the
-23rd.
+Three bugs is not a grudge. It is a list — and for once there is somewhere to
+put it.

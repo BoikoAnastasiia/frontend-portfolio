@@ -43,24 +43,15 @@ export default async function ContactPage({
         {/* Two columns with no gap, so the text keeps the exact 50% edge it
             had as ml-[50%] and stays flush with the about page. */}
         <div className="grid gap-10 md:grid-cols-2 md:gap-0">
-          {/* Grayscale, multiplied onto the page ground, so the portrait reads
-              as a duotone in the page ink rather than a photo pasted on top of
-              it. Under the mono theme the ground is paper, so it stays grey.
-              The brightness lift is measured, not taste: the studio backdrop
-              sits at 0.945 luminance, and multiply leaves anything below 1 as
-              a visible lighter rectangle. 1.06 clips it to white so the edge
-              of the photograph disappears into the ground. */}
-          <div className="md:pr-10">
-            <Image
-              src="/media/portrait.png"
-              alt="Anastasiia Boiko"
-              width={1254}
-              height={1254}
-              sizes="(min-width: 768px) 45vw, 100vw"
-              priority
-              className="h-auto w-full max-w-[26rem] mix-blend-multiply brightness-[1.06] grayscale contrast-[1.08]"
-            />
-          </div>
+          <Image
+            src="/media/portrait.jpg"
+            alt="Anastasiia Boiko"
+            width={1086}
+            height={1448}
+            sizes="(min-width: 768px) 18rem, 60vw"
+            priority
+            className="h-auto w-full max-w-[18rem]"
+          />
 
           <div>
             <p className="measure text-[clamp(1.25rem,1rem+1.1vw,2rem)] leading-[1.25] font-bold tracking-[-0.015em]">

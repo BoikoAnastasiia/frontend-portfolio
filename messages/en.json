@@ -29,9 +29,8 @@
     "allProjects": "All projects"
   },
   "about": {
-    "title": "I care about how things feel to use.",
-    "body": "Frontend developer with a background in graphic design, building interfaces where visual clarity, interaction and code work together.",
-    "cv": "Download CV (PDF)",
+    "title": "About.",
+    "body": "I care about how things feel to use.",
     "stats": "5 years frontend · 10 years design",
     "interest": "The part I care about begins after the feature already works.",
     "qualities": [
@@ -40,7 +39,8 @@
       "Whether the next step is obvious.",
       "Whether feedback comes at the right moment.",
       "Whether a component still makes sense when the happy path disappears."
-    ]
+    ],
+    "description": "Frontend developer with a background in graphic design, building interfaces where visual clarity, interaction and code work together."
   },
   "contact": {
     "title": "Contact",

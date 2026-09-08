@@ -29,9 +29,8 @@
     "allProjects": "Všetky projekty"
   },
   "about": {
-    "title": "Záleží mi na pocite z používania.",
-    "body": "Frontendová vývojárka so skúsenosťami z grafického dizajnu. Tvorím rozhrania, v ktorých vizuálna prehľadnosť, interakcia a kód fungujú spolu.",
-    "cv": "Stiahnuť životopis (PDF)",
+    "title": "O mne.",
+    "body": "Záleží mi na pocite z používania.",
     "stats": "5 rokov vo frontende · 10 rokov v dizajne",
     "interest": "Časť, ktorá ma zaujíma, sa začína až vtedy, keď funkcia už funguje.",
     "qualities": [
@@ -40,7 +39,8 @@
       "Či je ďalší krok zrejmý.",
       "Či spätná väzba príde v správnej chvíli.",
       "Či komponent dáva zmysel aj vtedy, keď ideálny scenár zmizne."
-    ]
+    ],
+    "description": "Frontendová vývojárka so skúsenosťami z grafického dizajnu. Tvorím rozhrania, v ktorých vizuálna prehľadnosť, interakcia a kód fungujú spolu."
   },
   "contact": {
     "title": "Kontakt",

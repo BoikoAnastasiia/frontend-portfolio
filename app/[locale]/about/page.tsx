@@ -15,7 +15,9 @@ export async function generateMetadata({
     locale: locale as Locale,
     path: '/about',
     title: t('title').replace(/\.$/, ''),
-    description: t('body'),
+    /* Not the body: that is now a seven-word statement, which makes a poor
+       search result. This key exists only for metadata. */
+    description: t('description'),
   })
 }
 
@@ -34,7 +36,7 @@ export default async function AboutPage({
 
   return (
     <PageFrame page="about">
-      <PageTitle statement>{t('title')}</PageTitle>
+      <PageTitle>{t('title')}</PageTitle>
 
       <section className="px-5 pt-16 pb-24 md:px-8 md:pt-24 md:pb-40">
         <div className="md:ml-[50%]">
@@ -55,17 +57,6 @@ export default async function AboutPage({
               <li key={line}>{line}</li>
             ))}
           </ul>
-
-          <p className="mt-10">
-            <a
-              href="/cv"
-              target="_blank"
-              rel="noreferrer noopener"
-              className="text-[clamp(1.125rem,1rem+0.6vw,1.5rem)] font-bold"
-            >
-              {t('cv')}
-            </a>
-          </p>
         </div>
       </section>
     </PageFrame>

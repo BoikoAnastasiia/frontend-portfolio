@@ -119,7 +119,7 @@
   },
   "blog": {
     "title": "Notes.",
-    "lede": "Writing about my own work, and about what is changing in frontend right now: what has just shipped, what quietly broke, and what turned out to be worth unlearning.",
+    "lede": "Notes on making things: what shipped, what broke, and what I had to unlearn.",
     "outline": "Outline",
     "back": "All notes",
     "empty": "Nothing finished yet. The first notes are being written."

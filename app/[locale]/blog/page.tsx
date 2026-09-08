@@ -43,7 +43,8 @@ export default async function BlogPage({
         {/* Same grid as a post row, so the lede lines up with the excerpts.
             A flat ml-[50%] sits half a gap to their left — 20px at gap-10. */}
         <div className="mb-12 grid md:mb-16 md:grid-cols-2 md:gap-10">
-          <p className="measure text-[clamp(1.0625rem,1rem+0.4vw,1.25rem)] md:col-start-2">
+          {/* Same size and weight as the about page's opening statement. */}
+          <p className="measure text-[clamp(1.25rem,1rem+1.1vw,2rem)] leading-[1.25] font-bold tracking-[-0.015em] text-pretty md:col-start-2">
             {t('lede')}
           </p>
         </div>

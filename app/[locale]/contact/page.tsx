@@ -50,7 +50,7 @@ export default async function ContactPage({
             height={1448}
             sizes="(min-width: 768px) 18rem, 60vw"
             priority
-            className="h-auto w-full max-w-[18rem]"
+            className="h-auto w-full max-w-[18rem] md:mr-10 md:justify-self-end"
           />
 
           <div>

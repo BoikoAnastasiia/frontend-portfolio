@@ -1,6 +1,6 @@
 import { getTranslations } from 'next-intl/server'
-import { Link } from '@/i18n/navigation'
 import { LangSwitch } from './lang-switch'
+import { NavLinks } from './nav-links'
 import type { Locale } from '@/i18n/routing'
 
 const NAV = [
@@ -31,18 +31,9 @@ export async function Header({ locale }: { locale: Locale }) {
         {/* No separate wordmark: it linked to "/" exactly as the first nav item
             does, so the row carried the same destination twice. */}
         <nav aria-label={t('main')} className="flex-1">
-          <ul className="flex flex-wrap items-baseline gap-x-6 md:justify-between md:pr-6">
-            {NAV.map((item) => (
-              <li key={item.key}>
-                <Link
-                  href={item.href}
-                  className="inline-flex min-h-11 items-center text-sm font-bold tracking-[-0.01em] uppercase no-underline hover:underline md:text-base"
-                >
-                  {t(item.key)}
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <NavLinks
+            items={NAV.map((item) => ({ ...item, label: t(item.key) }))}
+          />
         </nav>
 
         <LangSwitch current={locale} />

@@ -214,6 +214,18 @@ html[data-theme-switching] *::after {
     font-weight: 700;
   }
 
+  /* Main nav, same mechanism: the section you are in keeps the underline every
+     link has by default, the rest drop it and get it back on hover. The
+     underline takes --rule, so the marker is in the page's own ink. Without
+     this the only thing telling you where you are is the address bar, which
+     Safari hides. */
+  .nav-link:not([aria-current]) {
+    text-decoration: none;
+  }
+  .nav-link:not([aria-current]):hover {
+    text-decoration: underline;
+  }
+
   /* The right-hand column the reference uses for running text. */
   .measure {
     max-width: 34ch;

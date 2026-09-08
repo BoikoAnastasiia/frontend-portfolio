@@ -78,8 +78,8 @@ editor thinks it is at are the same number again.
 
 The lesson I actually took: a computed-style diff compares the values you
 declared. Text layout is downstream of that — font fallback, glyph substitution,
-shaping — and none of it shows up in the panel where I was looking. I spent two
-days comparing the wrong list.
+shaping — and none of it shows up in the panel where I was looking. I spent a
+week comparing the wrong list.
 
 ## Two: the image that renders everywhere except where it matters
 
@@ -96,7 +96,20 @@ push — a wrapper that scales from 1 to 1.1 over several seconds:
 }
 ```
 
-Put an `<img>` inside that wrapper and Safari renders nothing. Not a broken
+It is not as simple as "an `img` inside that wrapper", which is what cost us the
+time. A plain image animates in it perfectly well. What breaks is *two* scales
+compounding — because the photo is already being scaled to fill its box:
+
+```css
+.feature_content--image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* scale one: the photo into the box */
+}
+```
+
+and then the wrapper scales that again, from 1 to 1.1, in a composited layer.
+Either scale on its own is fine. Together, Safari renders nothing. Not a broken
 icon, not a flash, not a console error — an empty box where a face should be.
 The image loads. It simply never appears. The same markup animates correctly in
 Chrome and Firefox.
@@ -189,17 +202,27 @@ with a specification behind it.
 
 The image-in-a-scaled-wrapper one is a rendering bug, not a disagreement about
 what the spec says. Everyone agrees what should happen; one engine does not do
-it. That is a WebKit bug report, and it should have been filed as one at the
-time — by me, and I did not.
+it. The tidy answer is "file a WebKit bug", and I am not going to pretend I am
+about to. I did go looking for an existing report while writing this, and found
+close neighbours — content disappearing once an animation moves a composited
+layer's visible rectangle outside the tiles allocated for it, fixed in the Linux
+ports back in 2019 — but nothing describing a scale compounded on a scale. So it
+is possible nobody has filed this exact one.
+
+I still do not think that is the bottleneck. This is a well-populated corner of
+a public tracker read by people paid to read it, and the distance between a bug
+being known and a bug being prioritised is not closed by one more report.
+Interop is the only lever I am aware of that touches the second one.
 
 The canvas one is a resource-limit problem, and those are the hardest to write
 as a test. "Does the tab survive forty canvases" has no clean pass or fail. What
 *could* be specified is the part that actually cost us the week: what disposal
 is supposed to release, and when.
 
-So: one proposal, one bug report I owe them, and one that I now think was partly
-ours to solve. That is a less satisfying ending than the one I set out to write,
-and I think it is the right one.
+So: one proposal, one bug I am not going to file because I do not believe the
+filing is what is missing, and one that was partly ours to solve. That is a less
+satisfying ending than the one I set out to write, and I think it is the right
+one.
 
 If you have your own list — and if you have been carrying a workaround long
 enough to have forgotten what it works around — the window is open until the

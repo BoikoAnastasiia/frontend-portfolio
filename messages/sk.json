@@ -119,7 +119,7 @@
   },
   "blog": {
     "title": "Poznámky.",
-    "lede": "Píšem o tom, čo bolo náročné: poradie synchronizácie, meranie textu skôr, než vznikne, a cesta od tlačového dizajnu k produkčnému kódu.",
+    "lede": "Píšem o svojej práci a o tom, čo sa práve mení vo frontende: čo pribudlo, čo sa nenápadne pokazilo a čo sa oplatilo prestať robiť.",
     "outline": "Koncept",
     "back": "Všetky poznámky",
     "empty": "Zatiaľ nič hotové. Prvé poznámky sa píšu."

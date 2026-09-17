@@ -1,0 +1,103 @@
+---
+title: 'Brighter than white'
+date: '2026-09-17'
+excerpt: 'soverybright.com makes a logo shine up to 7.5 times brighter than white, and the internet mostly responded by shielding its eyes. I think it is the quietest way there is to make something stand out on a page.'
+ink: 'magenta'
+lang: 'en'
+---
+
+Someone built [soverybright.com](https://www.soverybright.com/). You give it a
+logo, pick the parts that should glow, and on an HDR screen they shine up to
+7.5 times brighter than `#FFFFFF`. On every other screen it is a perfectly
+ordinary JPEG.
+
+Every time I see it shared, the replies read like a support group for retinas.
+Nobody seems to like it.
+
+I love it.
+
+## A fourth way to say "look here"
+
+When one thing on a page has to stand out, the toolkit is short. Make it
+bigger. Make it bolder. Give it a lot of space. Or make it move.
+
+Each of those costs something. Size and space push the layout around. Weight
+changes the texture of the whole paragraph. Motion is the loudest of all, and
+the first thing that has to go for anyone who asked for reduced motion.
+
+Brightness costs none of that. The word keeps its size, its weight and its
+place, and it does not move. It is just lit — less a design decision than a
+word catching the light.
+
+<HdrDemo />
+
+## How the trick works
+
+Not with CSS colours. soverybright writes a gain map (ISO 21496-1): a normal
+JPEG plus a second, tiny grayscale image telling HDR-aware software how much
+brighter each pixel is allowed to go. Text gets painted through it:
+
+```css
+@media (dynamic-range: high) {
+  .hdr-text {
+    background: url('white-7.5x.jpg') center / cover;
+    background-clip: text;
+  }
+}
+```
+
+The demo above is the same idea with a 310-byte AVIF: a 16×16 patch of white
+encoded in PQ at 1000 nits, about five times the 203 nits that ordinary white
+is mapped to. One detail I would keep: I hide the text fill with
+`-webkit-text-fill-color: transparent` rather than `color: transparent`.
+Contrast checkers read `color`, so the word still counts as white on black
+instead of invisible text.
+
+## What CSS is getting
+
+[CSS Color HDR Module Level 1](https://drafts.csswg.org/css-color-hdr-1/) is an
+editor's draft, but one piece of it already ships. `dynamic-range-limit` works
+in Chrome and Edge 136 and Safari 26: `standard` clamps everything to reference
+white, `constrained` allows a little headroom, `no-limit` allows all of it. It
+is inherited and animatable, and the switch in the demo is that property and
+nothing else.
+
+The rest is still being written — the draft cannot yet agree with itself
+whether the new function is `hdr-color()` or `color-hdr()`. The idea is lovely,
+though: you give one colour for SDR and one for a display with headroom, and
+the browser interpolates for whatever screen it is actually on, without ever
+telling the page how much headroom that is.
+
+```css
+color-hdr(
+  color(rec2100-linear 0.9 1.0 0.8) 0,
+  color(rec2100-linear 1.8 2.0 1.5) 2
+)
+```
+
+In `rec2100-linear`, `1 1 1` is reference white. Anything above 1 is light.
+
+## Stars that finally look like stars
+
+Where this matters most is photos. An SDR photo can only be as bright as the
+page around it. The moon in a night shot is the same white as the margin next
+to it; a sunset is capped at the colour of a text box.
+
+I always struggle with photos of stars. However I edit them, they come out
+pale: to keep the sky dark, the brightest thing in the frame gets squeezed down
+to the same white as everything else, and every star ends up a grey speck.
+
+A gain map changes that. The sky stays where it was, and the moon and the stars
+get to sit a couple of stops above white on a screen that has room for it. And
+`dynamic-range-limit` gives the page a say: a gallery can keep its thumbnails
+at `standard` and let only the photo you opened go to `no-limit`.
+
+## Manners
+
+A highlight stops working the moment everything has one, so this is one word
+per page, not a paragraph. And the screen belongs to the reader: the spec
+expects browsers to let people cap brightness, and anyone can set
+`dynamic-range-limit: standard` in a user stylesheet.
+
+Used like that, it is the quietest emphasis on the web. It just happens to be
+very bright.

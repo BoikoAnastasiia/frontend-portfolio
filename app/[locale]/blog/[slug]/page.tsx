@@ -5,6 +5,7 @@ import rehypePrettyCode from 'rehype-pretty-code'
 import { PageFrame } from '@/components/page-frame'
 import { ScrollProgress } from '@/components/scroll-progress'
 import { GipperAiLoader } from '@/components/gipper-ai-loader'
+import { HdrDemo } from '@/components/hdr-demo'
 import { Link } from '@/i18n/navigation'
 import { getAllPosts, getPost, inkVar } from '@/lib/posts'
 import { routing, type Locale } from '@/i18n/routing'
@@ -72,7 +73,7 @@ export default async function PostPage({
             <MDXRemote
               source={content}
               /* Components a post may use by name in its MDX. */
-              components={{ GipperAiLoader }}
+              components={{ GipperAiLoader, HdrDemo }}
               options={{
                 mdxOptions: {
                   /* github-light renders some tokens at #E36209, which is 3.48:1 on

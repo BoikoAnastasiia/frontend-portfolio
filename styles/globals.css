@@ -289,6 +289,113 @@ html[data-theme-switching] *::after {
   .prose code {
     font-size: 0.9em;
   }
+
+  /* The HDR demo in the brighter-than-white post. A night panel in key ink in
+     both themes: brighter-than-white has nothing to show against paper. */
+  .hdr-demo {
+    margin-block: 2rem;
+    padding: 1.25rem;
+    background: var(--ink-key);
+    color: #fff;
+    dynamic-range-limit: no-limit;
+    transition: dynamic-range-limit 600ms ease;
+  }
+  .hdr-demo:has(input[value='constrained']:checked) {
+    dynamic-range-limit: constrained;
+  }
+  .hdr-demo:has(input[value='standard']:checked) {
+    dynamic-range-limit: standard;
+  }
+
+  .hdr-sky {
+    position: relative;
+    block-size: 7rem;
+  }
+  .hdr-star,
+  .hdr-moon {
+    position: absolute;
+    border-radius: 50%;
+    background: #fff;
+  }
+  .hdr-moon {
+    inset-block-start: 8%;
+    inset-inline-end: 12%;
+    inline-size: 3rem;
+    block-size: 3rem;
+    /* A crescent: the same disc with an offset one cut out of it. */
+    mask: radial-gradient(circle at 30% 38%, transparent 58%, #000 59%);
+  }
+
+  .hdr-line {
+    font-size: clamp(1.25rem, 1rem + 1vw, 1.75rem);
+    line-height: 1.3;
+  }
+
+  .hdr-limit {
+    display: none;
+    flex-wrap: wrap;
+    gap: 0 1.5rem;
+    border: 0;
+    padding: 0;
+    margin: 0;
+  }
+  .hdr-limit legend {
+    float: left;
+    inline-size: 100%;
+    font-size: 0.9375rem;
+  }
+  .hdr-limit label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-block-size: 2.75rem;
+    cursor: pointer;
+  }
+  .hdr-limit input {
+    accent-color: var(--ink-yellow);
+  }
+
+  .prose .hdr-demo figcaption {
+    margin-top: 0.5rem;
+  }
+  .hdr-only {
+    display: none;
+  }
+
+  @media (dynamic-range: high) {
+    /* -webkit-text-fill-color, not color: transparent. Contrast checkers read
+       `color`, so the word still counts as white on key ink. */
+    .hdr-glow {
+      background: url('/blog/hdr-white.avif') center / cover;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hdr-star.is-lit,
+    .hdr-moon {
+      background: url('/blog/hdr-white.avif') center / cover;
+    }
+    /* The switch, and the caption that points at it, only mean something
+       where the property exists. Firefox falls back to the SDR caption. */
+    @supports (dynamic-range-limit: standard) {
+      .hdr-limit {
+        display: flex;
+      }
+      .hdr-only {
+        display: inline;
+      }
+      .sdr-only {
+        display: none;
+      }
+    }
+  }
+
+  @media (forced-colors: active) {
+    .hdr-glow {
+      background: none;
+      -webkit-text-fill-color: currentColor;
+    }
+  }
 }
 
 /* ---------------------------------------------------------------------------

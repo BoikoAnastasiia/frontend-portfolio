@@ -76,6 +76,10 @@
         "roundPhone": "Adding a word by hand, then a round of the Croatian trainer."
       }
     },
+    "kambuz": {
+      "short": "Recipe picker fed by a multi-agent Claude pipeline",
+      "long": "What to cook tonight: pick a meal and a cuisine, get a dish. The recipes come from a multi-agent Claude pipeline, built solo, that turns YouTube cooking videos into structured recipes. A scout finds the dishes in a vlog, an extractor writes each one up with timestamps into the video, a verifier checks every amount against the transcript, and a judge catches duplicates. Benchmarked per agent and moved from Sonnet to Haiku 5.5, it costs about 3 cents a video."
+    },
     "guess-the-band": {
       "short": "Music quiz with a serverless API and difficulty stats",
       "long": "Vercel Functions proxy the Deezer API server-side rather than exposing it to the browser. Every round and answer is recorded in Postgres to compute per-track difficulty. Anonymous play always works, and syncs the moment you sign in.",
@@ -113,7 +117,9 @@
       "round": "Review round",
       "words": "Word list",
       "profile": "Profile",
-      "programs": "Programs"
+      "programs": "Programs",
+      "ingredients": "Must-have ingredients",
+      "recipe": "Recipe"
     },
     "scopeFullstack": "Full-stack app — from the design to the API."
   },

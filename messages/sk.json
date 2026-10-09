@@ -76,6 +76,10 @@
         "roundPhone": "Ručné pridanie slova a potom kolo chorvátskeho trénera."
       }
     },
+    "kambuz": {
+      "short": "Výber receptov poháňaný multiagentovým pipeline na Claude",
+      "long": "Čo dnes uvariť: vyberieš jedlo dňa a kuchyňu a dostaneš recept. Recepty pochádzajú z multiagentového pipeline na Claude, vytvoreného samostatne, ktorý mení kuchárske videá z YouTube na štruktúrované recepty. Scout nájde jedlá vo vlogu, extraktor každé spíše s časovými značkami do videa, verifikátor overí každé množstvo podľa prepisu a sudca zachytí duplikáty. Po porovnaní modelov pre každého agenta prešiel pipeline zo Sonnet na Haiku 5.5 a stojí asi 3 centy za video."
+    },
     "guess-the-band": {
       "short": "Hudobný kvíz so serverless API a štatistikou náročnosti",
       "long": "Vercel Functions volajú Deezer API na strane servera, namiesto toho, aby ho vystavili prehliadaču. Každé kolo a každá odpoveď sa zapisujú do Postgresu, aby sa dala počítať náročnosť jednotlivých skladieb. Anonymná hra funguje vždy a synchronizuje sa hneď po prihlásení.",
@@ -113,7 +117,9 @@
       "round": "Opakovacie kolo",
       "words": "Zoznam slov",
       "profile": "Profil",
-      "programs": "Programy"
+      "programs": "Programy",
+      "ingredients": "Povinné ingrediencie",
+      "recipe": "Recept"
     },
     "scopeFullstack": "Full-stack aplikácia — od dizajnu po API."
   },

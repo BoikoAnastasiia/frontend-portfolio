@@ -48,6 +48,8 @@ export const TECH = {
   telegram: { name: 'Telegram Bot', icon: 'telegram', kind: 'glyph', brand: '#26A5E4' },
   // No drawing yet — renders as a typographic chip.
   hono: { name: 'Hono', brand: '#E36002' },
+  claude: { name: 'Claude API', brand: '#D97757' },
+  mongodb: { name: 'MongoDB', brand: '#47A248' },
 } as const satisfies Record<string, Tech>
 
 export type TechId = keyof typeof TECH

@@ -1,7 +1,8 @@
 /**
  * Captures the project screens used on /projects/<slug>.
  *
- * Run with `node scripts/capture-screens.mjs`. Deliberately not part of the
+ * Run with `node scripts/capture-screens.mjs`, or name slugs to capture only
+ * those (`node scripts/capture-screens.mjs kambuz`). Deliberately not part of the
  * build: these are real sites over the network, and a flaky capture must never
  * be able to fail a deploy. Output lands in public/media/<slug>/ as PNG; run
  * scripts/optimise-screens.sh afterwards to size and convert them.
@@ -71,7 +72,26 @@ const TARGETS = [
       { id: 'profile', go: click(/^Profil$/) },
     ],
   },
+  {
+    slug: 'kambuz',
+    base: 'https://kambuz-lilac.vercel.app',
+    // Light only: the site has no dark theme.
+    themes: ['light'],
+    scenes: [
+      { id: 'home' },
+      {
+        id: 'ingredients',
+        go: async (p) => {
+          await click(/Обязательные ингредиенты/)(p)
+          await click(/^\+ Картофель$/)(p)
+        },
+      },
+      { id: 'recipe', go: path('/recipe/pizza-pepperoni--MDX8fylSisU') },
+    ],
+  },
 ]
+
+const only = process.argv.slice(2)
 
 const VIEWS = [
   { id: 'desktop', viewport: { width: 1440, height: 900 }, dsf: 2 },
@@ -80,7 +100,7 @@ const VIEWS = [
 
 const browser = await chromium.launch()
 
-for (const target of TARGETS) {
+for (const target of TARGETS.filter((t) => only.length === 0 || only.includes(t.slug))) {
   const dir = `public/media/${target.slug}`
   await mkdir(dir, { recursive: true })
 

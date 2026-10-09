@@ -134,8 +134,9 @@ export type Project = {
 
 /**
  * Order is deliberate: Guess the Band leads because its interface carries the
- * most design work, and job-feed-bot sits last as the only entry with no
- * interface to show.
+ * most design work, Kambuz closes the solo apps because its work is in the
+ * agent pipeline rather than the interface, and job-feed-bot sits last as the
+ * only entry with no interface to show.
  */
 export const PROJECTS: Project[] = [
   {
@@ -225,6 +226,27 @@ export const PROJECTS: Project[] = [
         height: 1342,
         shape: 'phone',
       },
+    ],
+  },
+  {
+    slug: 'kambuz',
+    title: 'Kambuz',
+    tech: ['next', 'typescript', 'claude', 'mongodb', 'vitest'],
+    liveUrl: 'https://kambuz-lilac.vercel.app/',
+    repoUrl: 'https://github.com/BoikoAnastasiia/kambuz',
+    scope: 'scopeFullstack',
+    hero: '/media/kambuz/home-desktop.jpg',
+    /* Light only, and no clip: the site has no dark theme, and the work worth
+       showing is the pipeline behind it, which the description carries. */
+    band: [
+      { kind: 'image', src: '/media/kambuz/home-desktop.jpg', aspect: WIDE },
+      { kind: 'image', src: '/media/kambuz/home-mobile.jpg', aspect: PHONE },
+      { kind: 'image', src: '/media/kambuz/recipe-desktop.jpg', aspect: WIDE },
+      { kind: 'image', src: '/media/kambuz/recipe-mobile.jpg', aspect: PHONE },
+    ],
+    media: [
+      gallery('kambuz', 'desktop', ['ingredients', 'recipe']),
+      gallery('kambuz', 'mobile', ['home', 'ingredients', 'recipe']),
     ],
   },
   {

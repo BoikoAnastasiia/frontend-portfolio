@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test'
+import { PROJECTS } from '../../content/projects'
 
 const ROUTES = [
   { path: '/', page: 'home' },
@@ -88,5 +89,6 @@ test('a project detail page carries its clips without fetching them upfront', as
 test('every project on the index links to its own page', async ({ page }) => {
   await page.goto('/projects')
   const links = page.locator('h2 a[href*="/projects/"]')
-  await expect(links).toHaveCount(6)
+  // Counted from the list itself, so adding a project doesn't break the test.
+  await expect(links).toHaveCount(PROJECTS.length)
 })

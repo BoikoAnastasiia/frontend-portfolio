@@ -74,7 +74,8 @@ const TARGETS = [
   },
   {
     slug: 'kambuz',
-    base: 'https://kambuz-lilac.vercel.app',
+    // The English version; the Russian one is the same site without /en.
+    base: 'https://kambuz-lilac.vercel.app/en',
     // Light only: the site has no dark theme.
     themes: ['light'],
     scenes: [
@@ -82,8 +83,9 @@ const TARGETS = [
       {
         id: 'ingredients',
         go: async (p) => {
-          await click(/Обязательные ингредиенты/)(p)
-          await click(/^\+ Картофель$/)(p)
+          await click(/Must-have ingredients/)(p)
+          // The chip reads "+ Potato 18": the name, then how many dishes have it.
+          await click(/^\+ Potato/)(p)
         },
       },
       { id: 'recipe', go: path('/recipe/pizza-pepperoni--MDX8fylSisU') },

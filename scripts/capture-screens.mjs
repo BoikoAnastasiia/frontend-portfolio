@@ -88,7 +88,7 @@ const TARGETS = [
           await click(/^\+ Potato/)(p)
         },
       },
-      { id: 'recipe', go: path('/recipe/pizza-pepperoni--MDX8fylSisU') },
+      { id: 'recipe', go: path('/recipe/pizza--MDX8fylSisU') },
     ],
   },
 ]

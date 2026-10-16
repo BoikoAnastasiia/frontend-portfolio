@@ -77,8 +77,8 @@
       }
     },
     "kambuz": {
-      "short": "Výber receptov poháňaný multiagentovým pipeline na Claude",
-      "long": "Čo dnes uvariť: vyberieš jedlo dňa a kuchyňu a dostaneš recept. Recepty pochádzajú z multiagentového pipeline na Claude, vytvoreného samostatne, ktorý mení kuchárske videá z YouTube na štruktúrované recepty. Scout nájde jedlá vo vlogu, extraktor každé spíše s časovými značkami do videa, verifikátor overí každé množstvo podľa prepisu a sudca zachytí duplikáty. Po porovnaní modelov pre každého agenta prešiel pipeline zo Sonnet na Haiku 5.5 a stojí asi 3 centy za video."
+      "short": "Dvojjazyčný výber receptov poháňaný multiagentovým pipeline na Claude",
+      "long": "Čo dnes uvariť: vyberieš jedlo dňa, kuchyňu a to, čo máš v chladničke, alebo len vyhľadáš, a dostaneš recept po rusky alebo po anglicky. Recepty pochádzajú z multiagentového pipeline na Claude, vytvoreného samostatne, ktorý mení kuchárske videá z YouTube na štruktúrované recepty. Scout nájde jedlá vo vlogu a preskočí videá, ktoré nie sú recepty, extraktor každé spíše s časovými značkami do videa, verifikátor overí každé množstvo podľa prepisu a sudca zachytí duplikáty. Spracovanie videí beží na Haiku 5.5 po porovnaní modelov pre každého agenta; do angličtiny prekladá Sonnet 5.5 a korektúru robí Opus 5.5, vybrané na evaluácii s 20 receptami. Stojí to asi 7 centov za jedlo."
     },
     "guess-the-band": {
       "short": "Hudobný kvíz so serverless API a štatistikou náročnosti",

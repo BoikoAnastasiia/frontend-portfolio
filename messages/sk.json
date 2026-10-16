@@ -119,7 +119,8 @@
       "profile": "Profil",
       "programs": "Programy",
       "ingredients": "Povinné ingrediencie",
-      "recipe": "Recept"
+      "recipe": "Recept",
+      "search": "Vyhľadávanie"
     },
     "scopeFullstack": "Full-stack aplikácia — od dizajnu po API."
   },

@@ -82,10 +82,19 @@ const TARGETS = [
       { id: 'home' },
       {
         id: 'ingredients',
+        // The ingredients menu, left open after picking one so its chips show.
         go: async (p) => {
-          await click(/Must-have ingredients/)(p)
+          await p.getByRole('button', { name: /^Must-have ingredients:/ }).click()
           // The chip reads "+ Potato 18": the name, then how many dishes have it.
-          await click(/^\+ Potato/)(p)
+          await p.getByRole('button', { name: /^\+ Potato/ }).click()
+          await p.waitForTimeout(1400)
+        },
+      },
+      {
+        id: 'search',
+        go: async (p) => {
+          await p.getByRole('searchbox', { name: 'Find a dish' }).fill('chicken')
+          await p.getByRole('heading', { name: /dishes found/ }).waitFor()
         },
       },
       { id: 'recipe', go: path('/recipe/pizza--MDX8fylSisU') },
@@ -100,7 +109,8 @@ const VIEWS = [
   { id: 'mobile', viewport: { width: 390, height: 844 }, dsf: 3 },
 ]
 
-const browser = await chromium.launch()
+// CAPTURE_CHANNEL=chrome uses the installed Google Chrome instead of Playwright's own build.
+const browser = await chromium.launch(process.env.CAPTURE_CHANNEL ? { channel: process.env.CAPTURE_CHANNEL } : {})
 
 for (const target of TARGETS.filter((t) => only.length === 0 || only.includes(t.slug))) {
   const dir = `public/media/${target.slug}`

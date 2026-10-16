@@ -245,8 +245,8 @@ export const PROJECTS: Project[] = [
       { kind: 'image', src: '/media/kambuz/recipe-mobile.jpg', aspect: PHONE },
     ],
     media: [
-      gallery('kambuz', 'desktop', ['ingredients', 'recipe']),
-      gallery('kambuz', 'mobile', ['home', 'ingredients', 'recipe']),
+      gallery('kambuz', 'desktop', ['ingredients', 'search', 'recipe']),
+      gallery('kambuz', 'mobile', ['home', 'ingredients', 'search', 'recipe']),
     ],
   },
   {

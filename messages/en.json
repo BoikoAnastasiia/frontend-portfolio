@@ -119,7 +119,8 @@
       "profile": "Profile",
       "programs": "Programs",
       "ingredients": "Must-have ingredients",
-      "recipe": "Recipe"
+      "recipe": "Recipe",
+      "search": "Search"
     },
     "scopeFullstack": "Full-stack app — from the design to the API."
   },
